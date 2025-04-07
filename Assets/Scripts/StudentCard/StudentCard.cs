@@ -59,8 +59,8 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
 
             yield return new WaitForSeconds(PauseDuration);
 
-            Vector2 startPosition = _studentCard.anchoredPosition;
-            Vector2 endPosition = startPosition + new Vector2(0, Screen.height);
+            var startPosition = _studentCard.anchoredPosition;
+            var endPosition = startPosition + new Vector2(0, Screen.height);
 
             timer = 0;
             while (timer < SlideOutDuration)
