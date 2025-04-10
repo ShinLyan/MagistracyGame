@@ -7,7 +7,7 @@ namespace MagistracyGame.MainMenu
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _returnButton;
-        [SerializeField] private DialogStage _dialogStage;
+        [SerializeField] private DialogueStage _dialogueStage;
 
         private const string ProgramUrl = "https://www.hse.ru/ma/gamedev/";
 
@@ -19,7 +19,7 @@ namespace MagistracyGame.MainMenu
             _returnButton.onClick.AddListener(ReturnToProgramPage);
         }
 
-        private void StartGame() => _dialogStage.StartDialogue();
+        private void StartGame() => _dialogueStage.StartDialogue();
 
         private static void ReturnToProgramPage() => Application.OpenURL(ProgramUrl);
     }

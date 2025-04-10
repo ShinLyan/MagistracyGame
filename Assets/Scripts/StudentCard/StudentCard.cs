@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MagistracyGame.Scripts.StudentCard.StudentCard
@@ -13,7 +14,9 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
         [SerializeField] private Image _stamp;
         [SerializeField] private RectTransform _studentCard;
         [SerializeField] private Sprite _yellowButtonSprite;
-        [SerializeField] private DialogStage _dialogStage;
+
+        [FormerlySerializedAs("_dialogStage")] [SerializeField]
+        private DialogueStage _dialogueStage;
 
         private const float StampFadeDuration = 1f;
         private const float PauseDuration = 2f;
@@ -28,7 +31,6 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
         private void OnNameEntered(string input)
         {
             if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter))
-            {
                 if (!string.IsNullOrWhiteSpace(input))
                 {
                     _button.interactable = true;
@@ -36,7 +38,6 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
                     _button.image.sprite = _yellowButtonSprite;
                     _nameInputField.DeactivateInputField();
                 }
-            }
         }
 
         private void OnContinueClicked()
@@ -68,11 +69,12 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
             {
                 timer += Time.deltaTime;
                 _studentCard.anchoredPosition = Vector2.Lerp(startPosition, endPosition, timer / SlideOutDuration);
-                
+
                 yield return null;
             }
+
             yield return new WaitForSeconds(SlideOutDuration);
-            _dialogStage.StartDialogue();
+            _dialogueStage.StartDialogue();
         }
     }
 }
