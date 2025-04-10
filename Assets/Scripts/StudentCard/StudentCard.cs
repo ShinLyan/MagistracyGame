@@ -13,6 +13,7 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
         [SerializeField] private Image _stamp;
         [SerializeField] private RectTransform _studentCard;
         [SerializeField] private Sprite _yellowButtonSprite;
+        [SerializeField] private DialogStage _dialogStage;
 
         private const float StampFadeDuration = 1f;
         private const float PauseDuration = 2f;
@@ -67,8 +68,11 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
             {
                 timer += Time.deltaTime;
                 _studentCard.anchoredPosition = Vector2.Lerp(startPosition, endPosition, timer / SlideOutDuration);
+                
                 yield return null;
             }
+            yield return new WaitForSeconds(SlideOutDuration);
+            _dialogStage.StartDialogue();
         }
     }
 }

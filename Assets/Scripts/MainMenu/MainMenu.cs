@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace MagistracyGame.MainMenu
@@ -8,7 +7,7 @@ namespace MagistracyGame.MainMenu
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _returnButton;
-        [SerializeField] private string _gameSceneName;
+        [SerializeField] private DialogStage _dialogStage;
 
         private const string ProgramUrl = "https://www.hse.ru/ma/gamedev/";
 
@@ -20,7 +19,7 @@ namespace MagistracyGame.MainMenu
             _returnButton.onClick.AddListener(ReturnToProgramPage);
         }
 
-        private void StartGame() => SceneManager.LoadScene(_gameSceneName);
+        private void StartGame() => _dialogStage.StartDialogue();
 
         private static void ReturnToProgramPage() => Application.OpenURL(ProgramUrl);
     }

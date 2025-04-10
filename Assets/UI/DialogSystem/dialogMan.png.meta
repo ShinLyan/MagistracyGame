@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b18a3335cef6db84d868b7682f957401
+guid: b16b5fdeee5d19a44933a2114e7b83ee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6539068265061685425
-    second: Frame 1981_0
+      213: -5426764648773263683
+    second: dialogMan_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Frame 1981_0
+      name: dialogMan_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 116
         y: 0
-        width: 1207
-        height: 135
+        width: 340
+        height: 733
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b8180d01ff6fba50800000000000000
-      internalID: 6539068265061685425
+      spriteID: dbed83edd4240b4b0800000000000000
+      internalID: -5426764648773263683
       vertices: []
       indices: 
       edges: []
