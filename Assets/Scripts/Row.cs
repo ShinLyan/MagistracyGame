@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class Row : MonoBehaviour
 {
-	public Tile[] tiles { get; private set; }
+    public Tile[] _tiles { get; private set; }
 
-	private void Awake()
-	{
-		tiles = GetComponentsInChildren<Tile>();
-	}
-
+    private void Awake() => _tiles = GetComponentsInChildren<Tile>();
 }

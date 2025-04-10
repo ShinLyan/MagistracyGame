@@ -6,15 +6,37 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    [SerializeField] private string[] boardLetters;
-    [SerializeField] private string[] targetWords = { };
-    [SerializeField] private GameObject wordsObject;
+    #region Fields and Properties
 
-    private Tile startTile;
-    private bool isDragging;
-    private int foundWordsCount;
+    [SerializeField] private GameObject _wordsContainer;
+    private Tile _startTile;
+    private bool _isDragging;
+    private int _foundWordsCount;
+    private bool _isCompleted;
 
-    private readonly Color[] selectionColors =
+    private readonly HashSet<string> _foundWords = new();
+    private List<Tile> _selectedTiles = new();
+    private readonly List<Tile> _permanentSelection = new();
+    private TextMeshProUGUI[] _wordsToGuess;
+    private Row[] _rows;
+
+    private readonly string[] _boardLetters =
+    {
+        "НЕЙРОСЕТЬУКВ",
+        "ГНАУКВУЙУИТЕ",
+        "ПЕСВВНДРОБЬК",
+        "ЛУИЫСАММАУКТ",
+        "ЮКНФЫСФФФЫФО",
+        "СГУЛОГАРИФМР",
+        "ГВСМАТРИЦАИМ"
+    };
+
+    private readonly string[] _targetWords =
+    {
+        "НЕЙРОСЕТЬ", "ПЛЮС", "СИНУС", "ДРОБЬ", "ЛОГАРИФМ", "МАТРИЦА", "ВЕКТОР"
+    };
+
+    private readonly Color[] _selectionColors =
     {
         new(0f, 0f, 1f), // Синий (0 слов)
         new(1f, 1f, 0f), // Желтый (1 слово)
@@ -25,43 +47,34 @@ public class Board : MonoBehaviour
         new(0f, 1f, 0f) // Зеленый (6 слов)
     };
 
-    private readonly HashSet<string> foundWords = new();
-    private List<Tile> currentSelection = new();
-    private readonly List<Tile> permanentSelection = new();
-    private List<TextMeshProUGUI> wordsToGuess = new();
+    private bool IsGameComplete => _foundWords.Count == _targetWords.Length;
 
-    public Row[] rows;
+    #endregion
 
     private void Awake()
     {
-        rows = GetComponentsInChildren<Row>();
-
-        if (wordsObject) wordsToGuess = wordsObject.GetComponentsInChildren<TextMeshProUGUI>().ToList();
+        _rows = GetComponentsInChildren<Row>();
+        _wordsToGuess = _wordsContainer.GetComponentsInChildren<TextMeshProUGUI>();
     }
 
     private void Start() => InitializeBoardLetters();
 
     private void InitializeBoardLetters()
     {
-        if (boardLetters == null || boardLetters.Length == 0) return;
-
-        if (boardLetters.Length != rows.Length) return;
-
-        for (int row = 0; row < rows.Length; row++)
+        for (int i = 0; i < _rows.Length; i++)
         {
-            var tiles = rows[row].tiles;
-            string rowLetters = boardLetters[row].ToUpper();
+            var tiles = _rows[i]._tiles;
+            string rowLetters = _boardLetters[i].ToUpper();
 
-            if (rowLetters.Length != tiles.Length) continue;
-
-            for (int col = 0; col < tiles.Length; col++)
-                if (rowLetters[col] != ' ')
-                    tiles[col].SetLetter(rowLetters[col]);
+            for (int j = 0; j < tiles.Length; j++)
+                tiles[j].SetLetter(rowLetters[j]);
         }
     }
 
     private void Update()
     {
+        if (_isCompleted) return;
+
         HandleInput();
     }
 
@@ -71,38 +84,36 @@ public class Board : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            startTile = GetTileAtPosition(mousePosition);
-            if (startTile != null && !permanentSelection.Contains(startTile))
-            {
-                isDragging = true;
-                currentSelection.Clear();
-                UpdateSelection(mousePosition);
-            }
-        }
-        else if (Input.GetMouseButton(0) && isDragging)
-        {
+            _startTile = GetTileAtPosition(mousePosition);
+            if (!_startTile || _permanentSelection.Contains(_startTile)) return;
+
+            _isDragging = true;
+            _selectedTiles.Clear();
             UpdateSelection(mousePosition);
         }
-        else if (Input.GetMouseButtonUp(0) && isDragging)
-        {
-            isDragging = false;
-            CheckWord();
-            currentSelection.Clear();
-            UpdateTileVisuals();
-        }
+
+        if (!_isDragging) return;
+
+        if (Input.GetMouseButton(0)) UpdateSelection(mousePosition);
+
+        if (!Input.GetMouseButtonUp(0)) return;
+
+        _isDragging = false;
+        if (TryGetMatchedWord(out string word)) ProcessMatchedWord(word);
+
+        _selectedTiles.Clear();
+        UpdateTileView();
     }
 
     private Tile GetTileAtPosition(Vector2 position)
     {
-        foreach (var row in rows)
-        foreach (var tile in row.tiles)
+        foreach (var row in _rows)
+        foreach (var tile in row._tiles)
         {
-            var tilePos = tile.GetPosition();
-            var rt = tile.GetComponent<RectTransform>();
-            var size = rt.sizeDelta;
-
-            if (position.x >= tilePos.x - size.x / 2 && position.x <= tilePos.x + size.x / 2 &&
-                position.y >= tilePos.y - size.y / 2 && position.y <= tilePos.y + size.y / 2)
+            var tilePosition = tile.GetPosition();
+            var size = tile.RectTransform.sizeDelta;
+            if (position.x >= tilePosition.x - size.x / 2 && position.x <= tilePosition.x + size.x / 2 &&
+                position.y >= tilePosition.y - size.y / 2 && position.y <= tilePosition.y + size.y / 2)
                 return tile;
         }
 
@@ -111,115 +122,109 @@ public class Board : MonoBehaviour
 
     private void UpdateSelection(Vector2 currentPosition)
     {
-        if (startTile == null) return;
+        if (!_startTile) return;
 
-        currentSelection.Clear();
+        _selectedTiles.Clear();
 
-        var startPos = startTile.GetPosition();
-        var direction = currentPosition - startPos;
+        var direction = currentPosition - _startTile.GetPosition();
         bool isHorizontal = Mathf.Abs(direction.x) > Mathf.Abs(direction.y);
 
-        int startRow = Array.FindIndex(rows, r => Array.IndexOf(r.tiles, startTile) != -1);
-        int startCol = Array.IndexOf(rows[startRow].tiles, startTile);
+        int rowIndex = Array.FindIndex(_rows, row => Array.IndexOf(row._tiles, _startTile) != -1);
+        int columnIndex = Array.IndexOf(_rows[rowIndex]._tiles, _startTile);
 
         if (isHorizontal)
-        {
-            // Используем точное расстояние в пикселях, а не округление
-            float tileWidth = rows[0].tiles[0].GetComponent<RectTransform>().sizeDelta.x;
-            float distancePixels = direction.x / tileWidth;
-            int distance = Mathf.RoundToInt(distancePixels);
-            int minCol = Mathf.Min(startCol, startCol + distance);
-            int maxCol = Mathf.Max(startCol, startCol + distance);
-
-            if (distance >= 0) // Вправо
-            {
-                for (int col = startCol; col <= maxCol; col++)
-                    if (col >= 0 && col < rows[startRow].tiles.Length)
-                        currentSelection.Add(rows[startRow].tiles[col]);
-            }
-            else // Влево
-            {
-                for (int col = startCol; col >= minCol; col--)
-                    if (col >= 0 && col < rows[startRow].tiles.Length)
-                        currentSelection.Add(rows[startRow].tiles[col]);
-            }
-        }
+            SelectHorizontal(rowIndex, columnIndex, direction.x);
         else
-        {
-            // Используем точное расстояние в пикселях для вертикального выделения
-            float tileHeight = rows[0].tiles[0].GetComponent<RectTransform>().sizeDelta.y;
-            float distancePixels = direction.y / tileHeight;
-            int distance = Mathf.RoundToInt(distancePixels);
-            int endRow = startRow - distance;
+            SelectVertical(rowIndex, columnIndex, direction.y);
 
-            if (endRow <= startRow) // Вверх
-            {
-                for (int row = startRow; row >= endRow; row--)
-                    if (row >= 0 && row < rows.Length)
-                        currentSelection.Add(rows[row].tiles[startCol]);
-            }
-            else // Вниз
-            {
-                for (int row = startRow; row <= endRow; row++)
-                    if (row >= 0 && row < rows.Length)
-                        currentSelection.Add(rows[row].tiles[startCol]);
-            }
-        }
-
-        currentSelection = currentSelection.Distinct().ToList();
-        UpdateTileVisuals();
+        _selectedTiles = _selectedTiles.Distinct().ToList();
+        UpdateTileView();
     }
 
-    private void UpdateTileVisuals()
+    private void SelectHorizontal(int rowIndex, int columnIndex, float x)
     {
-        foreach (var row in rows)
-        foreach (var tile in row.tiles)
-            if (!permanentSelection.Contains(tile))
-                tile.SetSelected(false, Color.white);
+        float tileWidth = _rows[0]._tiles[0].RectTransform.sizeDelta.x;
+        int offset = Mathf.RoundToInt(x / tileWidth);
+        int start = Mathf.Min(columnIndex, columnIndex + offset);
+        int end = Mathf.Max(columnIndex, columnIndex + offset);
 
+        for (int i = start; i <= end; i++)
+            if (i >= 0 && i < _rows[rowIndex]._tiles.Length)
+                _selectedTiles.Add(_rows[rowIndex]._tiles[i]);
+    }
+
+    private void SelectVertical(int rowIndex, int columnIndex, float y)
+    {
+        float tileHeight = _rows[0]._tiles[0].RectTransform.sizeDelta.y;
+        int offset = Mathf.RoundToInt(y / tileHeight);
+        int start = Mathf.Min(rowIndex, rowIndex - offset);
+        int end = Mathf.Max(rowIndex, rowIndex - offset);
+
+        for (int i = start; i <= end; i++)
+            if (i >= 0 && i < _rows.Length)
+                _selectedTiles.Add(_rows[i]._tiles[columnIndex]);
+    }
+
+    private void UpdateTileView()
+    {
         var currentColor = GetCurrentColor();
-        foreach (var tile in currentSelection)
-            if (!permanentSelection.Contains(tile))
-                tile.SetSelected(true, currentColor);
-    }
 
-    private void CheckWord()
-    {
-        string selectedWord = string.Join("", currentSelection.Select(t => t.letter));
-        string reversedWord = string.Join("", currentSelection.Reverse<Tile>().Select(t => t.letter));
+        foreach (var row in _rows)
+        foreach (var tile in row._tiles)
+        {
+            if (_permanentSelection.Contains(tile)) continue;
 
-        foreach (string target in targetWords)
-            if ((selectedWord == target || reversedWord == target) && !foundWords.Contains(target))
-            {
-                foundWords.Add(target);
-                foundWordsCount++;
-                permanentSelection.AddRange(currentSelection);
-                StrikeThroughWord(target);
-
-                if (IsGameComplete())
-                    Debug.Log("Congratulations! All words have been found! Ready to load the next scene.");
-                break;
-            }
-    }
-
-    private void StrikeThroughWord(string word)
-    {
-        foreach (var wordText in wordsToGuess)
-            if (wordText.text.ToUpper() == word.ToUpper())
-            {
-                wordText.text = $"<s>{wordText.text}</s>";
-                break;
-            }
+            bool isSelected = _selectedTiles.Contains(tile);
+            tile.SetSelected(isSelected, isSelected ? currentColor : Color.white);
+        }
     }
 
     private Color GetCurrentColor()
     {
-        int colorIndex = Mathf.Min(foundWordsCount, selectionColors.Length - 1);
-        return selectionColors[colorIndex];
+        int colorIndex = Mathf.Min(_foundWordsCount, _selectionColors.Length - 1);
+        return _selectionColors[colorIndex];
     }
 
-    public bool IsGameComplete()
+    private bool TryGetMatchedWord(out string matchedWord)
     {
-        return foundWords.Count == targetWords.Length;
+        string forward = string.Concat(_selectedTiles.Select(t => t.Letter));
+        string reversed = new(forward.Reverse().ToArray());
+
+        foreach (string target in _targetWords)
+            if ((target == forward || target == reversed) && !_foundWords.Contains(target))
+            {
+                matchedWord = target;
+                return true;
+            }
+
+        matchedWord = null;
+        return false;
+    }
+
+    private void ProcessMatchedWord(string word)
+    {
+        _foundWords.Add(word);
+        _foundWordsCount++;
+        _permanentSelection.AddRange(_selectedTiles);
+        StrikeThroughWord(word);
+
+        if (IsGameComplete) CompleteGame();
+    }
+
+    private void StrikeThroughWord(string word)
+    {
+        foreach (var wordText in _wordsToGuess)
+            if (string.Equals(wordText.text, word, StringComparison.CurrentCultureIgnoreCase))
+            {
+                wordText.text = $"<s>{wordText.text}</s>";
+                wordText.color = Color.gray;
+                break;
+            }
+    }
+
+    public void CompleteGame()
+    {
+        _isCompleted = true;
+        Debug.Log("ПОБЕДА!");
     }
 }
