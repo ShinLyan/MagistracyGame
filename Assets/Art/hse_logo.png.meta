@@ -153,6 +153,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -609,7 +635,27 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hse_logo_0: -6972489924756748348
+      hse_logo_1: -8150560959797041824
+      hse_logo_10: -3782958921091519815
+      hse_logo_11: 6833987908847134598
+      hse_logo_12: 8830780023860362776
+      hse_logo_13: -2894818072666562750
+      hse_logo_14: -3111482715441928678
+      hse_logo_15: -3994493054549116143
+      hse_logo_16: 2939421603891328398
+      hse_logo_17: -8290292667966321028
+      hse_logo_18: -4867253985862341548
+      hse_logo_19: 1709266933222660970
+      hse_logo_2: -7985610012061052143
+      hse_logo_3: -8816924446227583947
+      hse_logo_4: 6697544901552229132
+      hse_logo_5: -6304941026511187668
+      hse_logo_6: 7360329080434113046
+      hse_logo_7: -610162192779049981
+      hse_logo_8: -5179527201875788346
+      hse_logo_9: 2092813582207094528
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
