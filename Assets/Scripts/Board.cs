@@ -1,79 +1,62 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine;
 
 public class Board : MonoBehaviour
 {
     [SerializeField] private string[] boardLetters;
-    [SerializeField] private string[] targetWords = new string[] {};
+    [SerializeField] private string[] targetWords = { };
     [SerializeField] private GameObject wordsObject;
-    
+
     private Tile startTile;
-    private bool isDragging = false;
-    private int foundWordsCount = 0;
-    private Color[] selectionColors = new Color[]
+    private bool isDragging;
+    private int foundWordsCount;
+
+    private readonly Color[] selectionColors =
     {
-        new Color(0f, 0f, 1f),        // Синий (0 слов)
-        new Color(1f, 1f, 0f),        // Желтый (1 слово)
-        new Color(1f, 0f, 0f),        // Красный (2 слова)
-        new Color(0.5f, 0.5f, 0.5f),  // Серый (3 слова)
-        new Color(1f, 0.5f, 0f),      // Оранжевый (4 слова)
-        new Color(0.5f, 0f, 0.5f),    // Фиолетовый (5 слов)
-        new Color(0f, 1f, 0f)         // Зеленый (6 слов)
+        new(0f, 0f, 1f), // Синий (0 слов)
+        new(1f, 1f, 0f), // Желтый (1 слово)
+        new(1f, 0f, 0f), // Красный (2 слова)
+        new(0.5f, 0.5f, 0.5f), // Серый (3 слова)
+        new(1f, 0.5f, 0f), // Оранжевый (4 слова)
+        new(0.5f, 0f, 0.5f), // Фиолетовый (5 слов)
+        new(0f, 1f, 0f) // Зеленый (6 слов)
     };
-    private HashSet<string> foundWords = new HashSet<string>();
-    private List<Tile> currentSelection = new List<Tile>();
-    private List<Tile> permanentSelection = new List<Tile>();
-    private List<TextMeshProUGUI> wordsToGuess = new List<TextMeshProUGUI>();
-    
+
+    private readonly HashSet<string> foundWords = new();
+    private List<Tile> currentSelection = new();
+    private readonly List<Tile> permanentSelection = new();
+    private List<TextMeshProUGUI> wordsToGuess = new();
+
     public Row[] rows;
 
     private void Awake()
     {
         rows = GetComponentsInChildren<Row>();
 
-        if (wordsObject != null)
-        {
-            wordsToGuess = wordsObject.GetComponentsInChildren<TextMeshProUGUI>().ToList();
-        }
+        if (wordsObject) wordsToGuess = wordsObject.GetComponentsInChildren<TextMeshProUGUI>().ToList();
     }
 
-    private void Start()
-    {
-        InitializeBoardLetters();
-    }
+    private void Start() => InitializeBoardLetters();
 
     private void InitializeBoardLetters()
     {
-        if (boardLetters == null || boardLetters.Length == 0)
-        {
-            return;
-        }
+        if (boardLetters == null || boardLetters.Length == 0) return;
 
-        if (boardLetters.Length != rows.Length)
-        {
-            return;
-        }
+        if (boardLetters.Length != rows.Length) return;
 
         for (int row = 0; row < rows.Length; row++)
         {
-            Tile[] tiles = rows[row].tiles;
+            var tiles = rows[row].tiles;
             string rowLetters = boardLetters[row].ToUpper();
 
-            if (rowLetters.Length != tiles.Length)
-            {
-                continue;
-            }
+            if (rowLetters.Length != tiles.Length) continue;
 
             for (int col = 0; col < tiles.Length; col++)
-            {
                 if (rowLetters[col] != ' ')
-                {
                     tiles[col].SetLetter(rowLetters[col]);
-                }
-            }
         }
     }
 
@@ -111,21 +94,18 @@ public class Board : MonoBehaviour
 
     private Tile GetTileAtPosition(Vector2 position)
     {
-        foreach (Row row in rows)
+        foreach (var row in rows)
+        foreach (var tile in row.tiles)
         {
-            foreach (Tile tile in row.tiles)
-            {
-                Vector2 tilePos = tile.GetPosition();
-                RectTransform rt = tile.GetComponent<RectTransform>();
-                Vector2 size = rt.sizeDelta;
+            var tilePos = tile.GetPosition();
+            var rt = tile.GetComponent<RectTransform>();
+            var size = rt.sizeDelta;
 
-                if (position.x >= tilePos.x - size.x/2 && position.x <= tilePos.x + size.x/2 &&
-                    position.y >= tilePos.y - size.y/2 && position.y <= tilePos.y + size.y/2)
-                {
-                    return tile;
-                }
-            }
+            if (position.x >= tilePos.x - size.x / 2 && position.x <= tilePos.x + size.x / 2 &&
+                position.y >= tilePos.y - size.y / 2 && position.y <= tilePos.y + size.y / 2)
+                return tile;
         }
+
         return null;
     }
 
@@ -134,11 +114,11 @@ public class Board : MonoBehaviour
         if (startTile == null) return;
 
         currentSelection.Clear();
-        
-        Vector2 startPos = startTile.GetPosition();
-        Vector2 direction = (currentPosition - startPos);
+
+        var startPos = startTile.GetPosition();
+        var direction = currentPosition - startPos;
         bool isHorizontal = Mathf.Abs(direction.x) > Mathf.Abs(direction.y);
-        
+
         int startRow = Array.FindIndex(rows, r => Array.IndexOf(r.tiles, startTile) != -1);
         int startCol = Array.IndexOf(rows[startRow].tiles, startTile);
 
@@ -154,22 +134,14 @@ public class Board : MonoBehaviour
             if (distance >= 0) // Вправо
             {
                 for (int col = startCol; col <= maxCol; col++)
-                {
                     if (col >= 0 && col < rows[startRow].tiles.Length)
-                    {
                         currentSelection.Add(rows[startRow].tiles[col]);
-                    }
-                }
             }
             else // Влево
             {
                 for (int col = startCol; col >= minCol; col--)
-                {
                     if (col >= 0 && col < rows[startRow].tiles.Length)
-                    {
                         currentSelection.Add(rows[startRow].tiles[col]);
-                    }
-                }
             }
         }
         else
@@ -183,22 +155,14 @@ public class Board : MonoBehaviour
             if (endRow <= startRow) // Вверх
             {
                 for (int row = startRow; row >= endRow; row--)
-                {
                     if (row >= 0 && row < rows.Length)
-                    {
                         currentSelection.Add(rows[row].tiles[startCol]);
-                    }
-                }
             }
             else // Вниз
             {
                 for (int row = startRow; row <= endRow; row++)
-                {
                     if (row >= 0 && row < rows.Length)
-                    {
                         currentSelection.Add(rows[row].tiles[startCol]);
-                    }
-                }
             }
         }
 
@@ -208,25 +172,15 @@ public class Board : MonoBehaviour
 
     private void UpdateTileVisuals()
     {
-        foreach (Row row in rows)
-        {
-            foreach (Tile tile in row.tiles)
-            {
-                if (!permanentSelection.Contains(tile))
-                {
-                    tile.SetSelected(false, Color.white);
-                }
-            }
-        }
-
-        Color currentColor = GetCurrentColor();
-        foreach (Tile tile in currentSelection)
-        {
+        foreach (var row in rows)
+        foreach (var tile in row.tiles)
             if (!permanentSelection.Contains(tile))
-            {
+                tile.SetSelected(false, Color.white);
+
+        var currentColor = GetCurrentColor();
+        foreach (var tile in currentSelection)
+            if (!permanentSelection.Contains(tile))
                 tile.SetSelected(true, currentColor);
-            }
-        }
     }
 
     private void CheckWord()
@@ -235,7 +189,6 @@ public class Board : MonoBehaviour
         string reversedWord = string.Join("", currentSelection.Reverse<Tile>().Select(t => t.letter));
 
         foreach (string target in targetWords)
-        {
             if ((selectedWord == target || reversedWord == target) && !foundWords.Contains(target))
             {
                 foundWords.Add(target);
@@ -244,24 +197,19 @@ public class Board : MonoBehaviour
                 StrikeThroughWord(target);
 
                 if (IsGameComplete())
-                {
                     Debug.Log("Congratulations! All words have been found! Ready to load the next scene.");
-                }
                 break;
             }
-        }
     }
 
     private void StrikeThroughWord(string word)
     {
         foreach (var wordText in wordsToGuess)
-        {
             if (wordText.text.ToUpper() == word.ToUpper())
             {
                 wordText.text = $"<s>{wordText.text}</s>";
                 break;
             }
-        }
     }
 
     private Color GetCurrentColor()
