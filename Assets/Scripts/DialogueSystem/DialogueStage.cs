@@ -23,6 +23,19 @@ public class DialogueStage : MonoBehaviour
     {
         _blackBackground.enabled = true;
         levelIndex = 0;
+
+        var screens = new[]
+        {
+            _studentCardStage,
+            _fillwords,
+            _quiz,
+            _mergeGame,
+            _puzzle,
+            _magolegoChoice,
+            _diplomStage
+        };
+        foreach (var screen in screens) screen.SetActive(false);
+        _mainMenu.SetActive(true);
     }
 
     public void StartDialogue()
@@ -44,7 +57,7 @@ public class DialogueStage : MonoBehaviour
                 break;
             }
             case 2:
-            { 
+            {
                 _dialogueManager.SwitchDialoguePanel(true);
                 _blackBackgroundGameField.SetActive(true);
                 _fillwords.SetActive(false);
@@ -129,7 +142,7 @@ public class DialogueStage : MonoBehaviour
                 _blackBackgroundGameField.SetActive(false);
                 _mergeGame.SetActive(true);
                 break;
-                }
+            }
             case 5:
             {
                 _dialogueManager.SwitchDialoguePanel(false);
@@ -152,7 +165,7 @@ public class DialogueStage : MonoBehaviour
                 break;
             }
         }
-        
+
         levelIndex++;
     }
 }
