@@ -49,8 +49,9 @@ public class DialogueManager : MonoBehaviour
     {
         if (_dialoguePanelText.text == dialogue.Nodes[phraseIndex].Text)
         {
-            NextSentence();
+            
             if (dialogue.Nodes[phraseIndex].IsEnd) _dialogueStage.EndDialogue();
+            NextSentence();
         }
         else
         {
