@@ -1,105 +1,116 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.EventSystems;
-
-public class QuizManager : MonoBehaviour
+namespace QuizManager
 {
-    [SerializeField] private QuizData quizData;
-    [SerializeField] private TextMeshProUGUI questionText;
-    [SerializeField] private Button[] answerButtons;
-    [SerializeField] private TextMeshProUGUI guideText;
-    [SerializeField] private Color greenOutline = new Color(0, 1, 0, 1);
-    [SerializeField] private Color redOutline = new Color(1, 0, 0, 1);
+    using UnityEngine;
+    using UnityEngine.UI;
+    using UnityEngine.EventSystems;
+    using QuizData;
 
-    private int currentQuestionIndex = 0;
-    private bool isAnswered = false;
-    private bool isGuideTextFinished = false;
-    private TextTyper textTyper;
-
-    void Start()
+    public class QuizManager : MonoBehaviour
     {
-        textTyper = guideText.GetComponent<TextTyper>();
-        LoadQuestion(currentQuestionIndex);
-        EventSystem.current.SetSelectedGameObject(null);
-    }
+        [SerializeField] private QuizData _quizData;
+        [SerializeField] private QuizView _quizView;
+        [SerializeField] private Color _greenOutline = new Color(0, 1, 0, 1);
+        [SerializeField] private Color _redOutline = new Color(1, 0, 0, 1);
 
-    void Update()
-    {
-        if (isAnswered && isGuideTextFinished && (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)))
+        private int _currentQuestionIndex;
+        private bool _isAnswered;
+        private bool _isGuideTextFinished;
+        private TextTyper _textTyper;
+        
+        private void Start()
         {
-            MoveToNextQuestion();
+            _textTyper = _quizView.GetComponentInChildren<TextTyper>();
+            LoadQuestion(_currentQuestionIndex);
+            EventSystem.current.SetSelectedGameObject(null);
         }
-    }
 
-    void LoadQuestion(int index)
-    {
-        if (index >= quizData.questions.Length) return;
-
-        isAnswered = false;
-        isGuideTextFinished = false;
-        questionText.text = quizData.questions[index].questionText;
-        string initialText = quizData.questions[index].initialGuideText;
-        guideText.text = initialText;
-
-        for (int i = 0; i < answerButtons.Length; i++)
+        private void Update()
         {
-            int answerIndex = i;
-            answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = quizData.questions[index].answers[i];
-            answerButtons[i].interactable = true;
-            Outline outline = answerButtons[i].GetComponent<Outline>();
-            if (outline != null)
+            if (_isAnswered && _isGuideTextFinished &&
+                (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)))
             {
-                outline.effectColor = new Color(0, 0, 0, 0);
-                outline.effectDistance = new Vector2(5, 5);
-            }
-            answerButtons[i].onClick.RemoveAllListeners();
-            answerButtons[i].onClick.AddListener(() => OnAnswerClicked(answerIndex));
-        }
-    }
-
-    void OnAnswerClicked(int selectedAnswer)
-    {
-        if (isAnswered) return;
-
-        isAnswered = true;
-        QuizData.Question currentQuestion = quizData.questions[currentQuestionIndex];
-        bool isCorrect = selectedAnswer == currentQuestion.correctAnswerIndex;
-
-        Outline selectedOutline = answerButtons[selectedAnswer].GetComponent<Outline>();
-        if (selectedOutline != null)
-        {
-            selectedOutline.effectColor = isCorrect ? greenOutline : redOutline;
-            selectedOutline.effectDistance = new Vector2(5, 5);
-        }
-
-        if (!isCorrect)
-        {
-            Outline correctOutline = answerButtons[currentQuestion.correctAnswerIndex].GetComponent<Outline>();
-            if (correctOutline != null)
-            {
-                correctOutline.effectColor = greenOutline;
-                correctOutline.effectDistance = new Vector2(5, 5);
+                MoveToNextQuestion();
             }
         }
 
-        foreach (var button in answerButtons)
+        private void LoadQuestion(int questionIndex)
         {
-            button.interactable = false;
+            if (questionIndex >= _quizData.questions.Length)
+            {
+                EndQuiz();
+                return;
+            }
+
+            _isAnswered = false;
+            _isGuideTextFinished = false;
+
+            _quizView.DisplayQuestion(_quizData.questions[questionIndex]);
+
+            Button[] answerButtons = _quizView.GetAnswerButtons();
+            for (int i = 0; i < answerButtons.Length; i++)
+            {
+                int answerIndex = i;
+                answerButtons[i].onClick.RemoveAllListeners();
+                answerButtons[i].onClick.AddListener(() => OnAnswerClicked(answerIndex));
+            }
         }
 
-        string guideMessage = isCorrect ? currentQuestion.guideTextCorrect : currentQuestion.guideTextIncorrect;
-        textTyper.TypeText(guideMessage, 3f, () => isGuideTextFinished = true);
-    }
-
-    void MoveToNextQuestion()
-    {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.questions.Length)
+        private void OnAnswerClicked(int selectedAnswer)
         {
-            LoadQuestion(currentQuestionIndex);
+            if (_isAnswered) return;
+
+            _isAnswered = true;
+            Question currentQuestion = _quizData.questions[_currentQuestionIndex];
+            bool isCorrect = selectedAnswer == currentQuestion.correctAnswerIndex; // Теперь поле
+
+            HighlightAnswer(selectedAnswer, isCorrect, currentQuestion.correctAnswerIndex);
+            DisableAnswerButtons();
+            DisplayGuideText(isCorrect, currentQuestion);
         }
-        else
+
+        private void HighlightAnswer(int selectedAnswer, bool isCorrect, int correctAnswerIndex)
+        {
+            Button[] answerButtons = _quizView.GetAnswerButtons();
+
+            Outline selectedOutline = answerButtons[selectedAnswer].GetComponent<Outline>();
+            if (selectedOutline != null)
+            {
+                selectedOutline.effectColor = isCorrect ? _greenOutline : _redOutline;
+                selectedOutline.effectDistance = new Vector2(5, 5);
+            }
+
+            if (!isCorrect)
+            {
+                Outline correctOutline = answerButtons[correctAnswerIndex].GetComponent<Outline>();
+                if (correctOutline != null)
+                {
+                    correctOutline.effectColor = _greenOutline;
+                    correctOutline.effectDistance = new Vector2(5, 5);
+                }
+            }
+        }
+
+        private void DisableAnswerButtons()
+        {
+            foreach (var button in _quizView.GetAnswerButtons())
+            {
+                button.interactable = false;
+            }
+        }
+
+        private void DisplayGuideText(bool isCorrect, Question question)
+        {
+            string guideMessage = isCorrect ? question.guideTextCorrect : question.guideTextIncorrect; // Теперь поля
+            _textTyper.TypeText(guideMessage, 3f, () => _isGuideTextFinished = true);
+        }
+
+        private void MoveToNextQuestion()
+        {
+            _currentQuestionIndex++;
+            LoadQuestion(_currentQuestionIndex);
+        }
+
+        private void EndQuiz()
         {
             Debug.Log("Квиз завершён!");
         }

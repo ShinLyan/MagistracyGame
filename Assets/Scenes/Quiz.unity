@@ -1025,6 +1025,7 @@ GameObject:
   - component: {fileID: 802403102}
   - component: {fileID: 802403101}
   - component: {fileID: 802403100}
+  - component: {fileID: 802403104}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1118,6 +1119,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &802403104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802403099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6600dab01c24461592386002981f807a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questionText: {fileID: 539888218}
+  _guideText: {fileID: 889004487}
+  _answerButtons:
+  - {fileID: 210410307}
+  - {fileID: 642477697}
+  - {fileID: 1311900771}
+  - {fileID: 1692971794}
 --- !u!1 &889004485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,16 +2112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd0acb92ffbb814f96939eeb7f5f523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quizData: {fileID: 11400000, guid: dcf4a7a7dd09f944b891e9ae4e9bf251, type: 2}
-  questionText: {fileID: 539888218}
-  answerButtons:
-  - {fileID: 210410307}
-  - {fileID: 642477697}
-  - {fileID: 1311900771}
-  - {fileID: 1692971794}
-  guideText: {fileID: 889004487}
-  greenOutline: {r: 0, g: 1, b: 0, a: 1}
-  redOutline: {r: 1, g: 0, b: 0, a: 1}
+  _quizData: {fileID: 11400000, guid: dcf4a7a7dd09f944b891e9ae4e9bf251, type: 2}
+  _quizView: {fileID: 802403104}
+  _greenOutline: {r: 0, g: 1, b: 0, a: 1}
+  _redOutline: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
