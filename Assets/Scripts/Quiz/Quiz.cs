@@ -1,14 +1,15 @@
+using MagistracyGame.Core;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MagistracyGame.Quiz
 {
-    public class Quiz : MonoBehaviour
+    public class Quiz : MonoBehaviour, IGame
     {
         [SerializeField] private QuizData _data;
         [SerializeField] private QuizView _view;
         [SerializeField] private TextTyper _guideTyper;
 
-        private bool _isGameCompleted;
         private int _questionIndex;
 
         private int QuestionIndex
@@ -38,7 +39,7 @@ namespace MagistracyGame.Quiz
 
         private void HandleAnswer(int selectedAnswerIndex)
         {
-            if (_isGameCompleted) return;
+            if (IsGameFinished) return;
 
             bool isCorrect = selectedAnswerIndex == Question.CorrectAnswerIndex;
             _view.ShowAnswerFeedback(selectedAnswerIndex, Question.CorrectAnswerIndex, isCorrect);
@@ -55,10 +56,18 @@ namespace MagistracyGame.Quiz
             ShowQuestion();
         }
 
-        private void FinishGame()
+        #region IGame
+
+        public bool IsGameFinished { get; private set; }
+
+        [field: SerializeField] public UnityEvent OnGameFinished { get; private set; }
+
+        public void FinishGame()
         {
-            _isGameCompleted = true;
-            Debug.Log("Квиз завершён!");
+            IsGameFinished = true;
+            OnGameFinished?.Invoke();
         }
+
+        #endregion
     }
 }

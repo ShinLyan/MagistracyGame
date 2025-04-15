@@ -1,22 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MagistracyGame.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MagistracyGame.FillWords
 {
-    public class Board : MonoBehaviour
+    public class FillWords : MonoBehaviour, IGame
     {
         #region Fields and Properties
 
         [SerializeField] private GameObject _wordsContainer;
-        [SerializeField] private GameObject _continueButton;
 
         private Tile _startTile;
         private bool _isDragging;
         private int _foundWordsCount;
-        private bool _isCompleted;
 
         private readonly HashSet<string> _foundWords = new();
         private List<Tile> _selectedTiles = new();
@@ -59,7 +59,6 @@ namespace MagistracyGame.FillWords
         {
             _rows = GetComponentsInChildren<Row>();
             _wordsToGuess = _wordsContainer.GetComponentsInChildren<TextMeshProUGUI>();
-            _continueButton.SetActive(false);
         }
 
         private void Start() => InitializeBoardLetters();
@@ -78,7 +77,7 @@ namespace MagistracyGame.FillWords
 
         private void Update()
         {
-            if (_isCompleted) return;
+            if (IsGameFinished) return;
 
             HandleInput();
         }
@@ -213,7 +212,7 @@ namespace MagistracyGame.FillWords
             _permanentSelection.AddRange(_selectedTiles);
             StrikeThroughWord(word);
 
-            if (IsGameComplete) CompleteGame();
+            if (IsGameComplete) FinishGame();
         }
 
         private void StrikeThroughWord(string word)
@@ -227,10 +226,14 @@ namespace MagistracyGame.FillWords
                 }
         }
 
-        public void CompleteGame()
+        public bool IsGameFinished { get; private set; }
+
+        [field: SerializeField] public UnityEvent OnGameFinished { get; private set; }
+
+        public void FinishGame()
         {
-            _isCompleted = true;
-            _continueButton.SetActive(true);
+            IsGameFinished = true;
+            OnGameFinished?.Invoke();
         }
     }
 }

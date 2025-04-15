@@ -9,8 +9,9 @@ public class DialogueStage : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _studentCardStage;
     [SerializeField] private GameObject _fillwords;
-    [SerializeField] private GameObject _quiz;
+    [SerializeField] private GameObject _firstQuiz;
     [SerializeField] private GameObject _mergeGame;
+    [SerializeField] private GameObject _secondQuiz;
     [SerializeField] private GameObject _puzzle;
     [SerializeField] private GameObject _magolegoChoice;
     [SerializeField] private GameObject _diplomStage;
@@ -28,8 +29,9 @@ public class DialogueStage : MonoBehaviour
         {
             _studentCardStage,
             _fillwords,
-            _quiz,
+            _firstQuiz,
             _mergeGame,
+            _secondQuiz,
             _puzzle,
             _magolegoChoice,
             _diplomStage
@@ -74,7 +76,7 @@ public class DialogueStage : MonoBehaviour
             {
                 _dialogueManager.SwitchDialoguePanel(true);
                 _blackBackgroundGameField.SetActive(true);
-                _quiz.SetActive(false);
+                _firstQuiz.SetActive(false);
                 break;
             }
             case 5:
@@ -88,7 +90,7 @@ public class DialogueStage : MonoBehaviour
             {
                 _dialogueManager.SwitchDialoguePanel(true);
                 _blackBackgroundGameField.SetActive(true);
-                _quiz.SetActive(false);
+                _secondQuiz.SetActive(false);
                 break;
             }
             case 7:
@@ -133,7 +135,7 @@ public class DialogueStage : MonoBehaviour
             {
                 _dialogueManager.SwitchDialoguePanel(false);
                 _blackBackgroundGameField.SetActive(false);
-                _quiz.SetActive(true);
+                _firstQuiz.SetActive(true);
                 break;
             }
             case 4:
@@ -147,7 +149,7 @@ public class DialogueStage : MonoBehaviour
             {
                 _dialogueManager.SwitchDialoguePanel(false);
                 _blackBackgroundGameField.SetActive(false);
-                _quiz.SetActive(true);
+                _secondQuiz.SetActive(true);
                 break;
             }
             case 6:

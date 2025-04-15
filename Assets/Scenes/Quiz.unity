@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 802403105}
   - component: {fileID: 802403106}
   m_Layer: 5
-  m_Name: QuizGame
+  m_Name: Quiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,7 +1050,6 @@ MonoBehaviour:
   - {fileID: 931439708}
   - {fileID: 1578802740}
   - {fileID: 1397109249}
-  _guidePanel: {fileID: 487845368}
   _guidePanelButton: {fileID: 487845370}
   _guideText: {fileID: 889004487}
   _correctColor: {r: 0, g: 1, b: 0, a: 1}
@@ -1071,6 +1070,21 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: dcf4a7a7dd09f944b891e9ae4e9bf251, type: 2}
   _view: {fileID: 802403104}
   _guideTyper: {fileID: 802403106}
+  <OnGameFinished>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &802403106
 MonoBehaviour:
   m_ObjectHideFlags: 0

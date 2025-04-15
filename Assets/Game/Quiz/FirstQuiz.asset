@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3887b5a31715ec4488d83b5b1ae0467e, type: 3}
-  m_Name: QuizData
+  m_Name: FirstQuiz
   m_EditorClassIdentifier: 
   <Questions>k__BackingField:
   - <QuestionText>k__BackingField: Question1
