@@ -1,10 +1,10 @@
-namespace QuizData
-{
-	using UnityEngine;
+using UnityEngine;
 
-	[CreateAssetMenu(fileName = "NewQuizData", menuName = "Quiz/QuizData")]
-	public class QuizData : ScriptableObject
-	{
-		public Question[] questions;
-	}
+namespace MagistracyGame.Quiz
+{
+    [CreateAssetMenu(menuName = "MagistracyGame/QuizData")]
+    public class QuizData : ScriptableObject
+    {
+        [field: SerializeField] public QuizQuestion[] Questions { get; private set; }
+    }
 }
