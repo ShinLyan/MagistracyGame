@@ -11,6 +11,8 @@ namespace MagistracyGame.FillWords
         #region Fields and Properties
 
         [SerializeField] private GameObject _wordsContainer;
+        [SerializeField] private GameObject _continueButton;
+
         private Tile _startTile;
         private bool _isDragging;
         private int _foundWordsCount;
@@ -57,6 +59,7 @@ namespace MagistracyGame.FillWords
         {
             _rows = GetComponentsInChildren<Row>();
             _wordsToGuess = _wordsContainer.GetComponentsInChildren<TextMeshProUGUI>();
+            _continueButton.SetActive(false);
         }
 
         private void Start() => InitializeBoardLetters();
@@ -227,7 +230,7 @@ namespace MagistracyGame.FillWords
         public void CompleteGame()
         {
             _isCompleted = true;
-            Debug.Log("ПОБЕДА!");
+            _continueButton.SetActive(true);
         }
     }
 }
