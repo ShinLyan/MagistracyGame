@@ -6926,6 +6926,7 @@ GameObject:
   - component: {fileID: 1216612057}
   - component: {fileID: 1216612056}
   - component: {fileID: 1216612055}
+  - component: {fileID: 1216612058}
   m_Layer: 5
   m_Name: StudentCard
   m_TagString: Untagged
@@ -6971,6 +6972,7 @@ MonoBehaviour:
   _stamp: {fileID: 1462353150}
   _studentCard: {fileID: 1216612054}
   _yellowButtonSprite: {fileID: 533510482778579125, guid: 53b3b1f4568c4084bb3a237142e97afd, type: 3}
+  _nicknameFilter: {fileID: 1216612058}
   _dialogueStage: {fileID: 1757825848}
 --- !u!114 &1216612056
 MonoBehaviour:
@@ -7010,6 +7012,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216612053}
   m_CullTransparentMesh: 1
+--- !u!114 &1216612058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216612053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c33fbeac24d62e4a842b8bd74d884fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1225742716
 GameObject:
   m_ObjectHideFlags: 0
