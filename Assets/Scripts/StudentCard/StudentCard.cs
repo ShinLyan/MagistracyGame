@@ -14,7 +14,7 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
         [SerializeField] private Image _stamp;
         [SerializeField] private RectTransform _studentCard;
         [SerializeField] private Sprite _yellowButtonSprite;
-
+        [SerializeField] private NicknameFilter _nicknameFilter;
         [FormerlySerializedAs("_dialogStage")] [SerializeField]
         private DialogueStage _dialogueStage;
 
@@ -42,6 +42,7 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
 
         private void OnContinueClicked()
         {
+            print(_nicknameFilter.IsNicknameClean(_nameInputField.text));
             PlayerPrefs.SetString("PlayerNickname", _nameInputField.text);
             PlayerPrefs.Save();
             _button.interactable = false;
