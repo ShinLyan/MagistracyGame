@@ -1160,29 +1160,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afd27cf992b34143b45df85cacc03ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slot1: {fileID: 117062717}
-  slot2: {fileID: 1619441775}
-  slot1Text: {fileID: 407704754}
-  slot2Text: {fileID: 816761735}
-  mergeButton: {fileID: 1912170531}
-  resultSlot: {fileID: 981394778}
-  resultText: {fileID: 1257045998}
-  availableElementsPanel: {fileID: 1231629853}
-  victoryPanel: {fileID: 1811154697}
-  victoryIcon: {fileID: 2083346103}
-  victoryTitle: {fileID: 478977621}
-  victoryDescription: {fileID: 1462675165}
-  mathIcon: {fileID: 657193517335828509, guid: d71e03af2344085478ea36c99bc83bd5, type: 3}
-  physicsIcon: {fileID: -6219217318133598067, guid: 7414c874f763be644ae368f14ea52f18, type: 3}
-  programmingIcon: {fileID: 3537671319714689348, guid: fdd22e9a42d8e454dabe5c87e70961b1, type: 3}
-  mathModelIcon: {fileID: 8595083788274730732, guid: 56b4464f3260cb449bc8c8769ab6f717, type: 3}
-  databaseIcon: {fileID: -2076541815991202156, guid: 5f1ee9f68d2d4c14180bea09b7ee087e, type: 3}
-  neuralNetIcon: {fileID: -3794158856171254476, guid: 98514d6d72ccafd4dbdaa5c61cc41e6f, type: 3}
-  physicsModuleIcon: {fileID: 7323668147449601211, guid: 83865971661a48347b4af823e3da15aa, type: 3}
-  neuralModuleIcon: {fileID: 4322487883936679923, guid: c508c81afa4c5ba4e86b0c5d35499738, type: 3}
-  codeIcon: {fileID: -9204041452944911412, guid: ab30649afe665a546ae9094beedf1837, type: 3}
-  failIcon: {fileID: -8809710622843708444, guid: d72b53b73d0b9a84a98654fb26cbf21d, type: 3}
-  mainUIGroup: {fileID: 1992499642}
+  _slotFirst: {fileID: 117062717}
+  _slotSecond: {fileID: 1619441775}
+  _slotFirstText: {fileID: 407704754}
+  _slotSecondText: {fileID: 816761735}
+  _mergeButton: {fileID: 1912170531}
+  _resultSlot: {fileID: 981394778}
+  _resultText: {fileID: 1257045998}
+  _availableElementsPanel: {fileID: 1231629853}
+  _victoryPanel: {fileID: 1811154697}
+  _victoryIcon: {fileID: 2083346103}
+  _victoryTitle: {fileID: 478977621}
+  _victoryDescription: {fileID: 1462675165}
+  _mathIcon: {fileID: 657193517335828509, guid: d71e03af2344085478ea36c99bc83bd5, type: 3}
+  _physicsIcon: {fileID: -6219217318133598067, guid: 7414c874f763be644ae368f14ea52f18, type: 3}
+  _programmingIcon: {fileID: 3537671319714689348, guid: fdd22e9a42d8e454dabe5c87e70961b1, type: 3}
+  _mathModelIcon: {fileID: 8595083788274730732, guid: 56b4464f3260cb449bc8c8769ab6f717, type: 3}
+  _databaseIcon: {fileID: -2076541815991202156, guid: 5f1ee9f68d2d4c14180bea09b7ee087e, type: 3}
+  _neuralNetIcon: {fileID: -3794158856171254476, guid: 98514d6d72ccafd4dbdaa5c61cc41e6f, type: 3}
+  _physicsModuleIcon: {fileID: 7323668147449601211, guid: 83865971661a48347b4af823e3da15aa, type: 3}
+  _neuralModuleIcon: {fileID: 4322487883936679923, guid: c508c81afa4c5ba4e86b0c5d35499738, type: 3}
+  _codeIcon: {fileID: -9204041452944911412, guid: ab30649afe665a546ae9094beedf1837, type: 3}
+  _failIcon: {fileID: -8809710622843708444, guid: d72b53b73d0b9a84a98654fb26cbf21d, type: 3}
+  _gameData: {fileID: 11400000, guid: 9e4fe20e4eda7a248b25603ef178eb13, type: 2}
+  _elementButtonPrefab: {fileID: 2864212189774969401, guid: 5900d0ada42a74f4eafad9a89f516c04, type: 3}
+  _mainUIGroup: {fileID: 1992499642}
 --- !u!4 &1180613511
 Transform:
   m_ObjectHideFlags: 0
@@ -1545,8 +1547,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0422\u0435\u043A\u0441\u0442 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044F
-    \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u0430"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
