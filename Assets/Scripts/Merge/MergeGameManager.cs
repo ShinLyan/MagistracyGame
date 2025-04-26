@@ -160,7 +160,6 @@ namespace MagistracyGame.Merge
                 yield break;
             }
 
-
             if (!_availableElements.Contains(resultElement))
             {
                 _availableElements.Add(resultElement);
