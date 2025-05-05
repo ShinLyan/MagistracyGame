@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 3d3a8b4c232af9c4ab13525f6a4f14b4
+guid: 97b40bbde80b69745baf68c0696f75c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4845324126200731763
-    second: WhitePanel 1_0
+      213: -5087388860964021482
+    second: MIEM_logo 1_0
+  - first:
+      213: 1336192698403567917
+    second: MIEM_logo 1_1
+  - first:
+      213: 1538615470903246332
+    second: MIEM_logo 1_2
+  - first:
+      213: 764980048833881243
+    second: MIEM_logo 1_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +135,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhitePanel 1_0
+      name: MIEM_logo 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 620
-        height: 486
+        width: 176
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d87ec2cf063f1ccb0800000000000000
-      internalID: -4845324126200731763
+      spriteID: 846fd9b8acbf96747bbbaf9940a9dc77
+      internalID: -1504397459
       vertices: []
       indices: 
       edges: []
@@ -151,7 +160,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 19a3a182a898e6a43a456e3be4d3e002
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +170,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WhitePanel 1_0: -4845324126200731763
+      MIEM_logo 1_0: -1504397459
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
