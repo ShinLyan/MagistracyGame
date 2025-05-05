@@ -1675,7 +1675,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -765760915438012738, guid: 3caa5600a12f03d449bcbd9ddbbba280, type: 3}
+  m_Sprite: {fileID: 4564285524710899810, guid: 405b87b737768b14fb665f0fe71e999d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6971,7 +6971,6 @@ MonoBehaviour:
   _button: {fileID: 1994155092}
   _stamp: {fileID: 1462353150}
   _studentCard: {fileID: 1216612054}
-  _yellowButtonSprite: {fileID: 533510482778579125, guid: 53b3b1f4568c4084bb3a237142e97afd, type: 3}
   _nicknameFilter: {fileID: 1216612058}
   _dialogueStage: {fileID: 1757825848}
 --- !u!114 &1216612056
@@ -7127,7 +7126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7228981403028371218, guid: 6f259e6e36d2a074090bc6061559e2ff, type: 3}
+  m_Sprite: {fileID: -765760915438012738, guid: 3caa5600a12f03d449bcbd9ddbbba280, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

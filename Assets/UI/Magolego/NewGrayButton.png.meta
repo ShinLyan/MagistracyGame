@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0c56ae0577a69bf4cac4d1c8e8e9afdf
+guid: 405b87b737768b14fb665f0fe71e999d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5016325314052294201
-    second: "\u043C\u0430\u0433\u043E\u043B\u0435\u0433\u043E_0"
+      213: 4564285524710899810
+    second: NewGrayButton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u043C\u0430\u0433\u043E\u043B\u0435\u0433\u043E_0"
+      name: NewGrayButton_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 194
+        height: 59
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 93603e5ab419d9540800000000000000
-      internalID: 5016325314052294201
+      spriteID: 260c9d98089975f30800000000000000
+      internalID: 4564285524710899810
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "\u043C\u0430\u0433\u043E\u043B\u0435\u0433\u043E_0": 5016325314052294201
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

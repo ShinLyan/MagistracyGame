@@ -33,12 +33,26 @@ public class MagoLegoMenu : MonoBehaviour
     {
         for (int i = 0; i < _options.Count; i++)
         {
-            bool isActive = (i == idx);
-            _options[i].SetActive(isActive);
+            if (i == idx)
+            {
+                _options[i].transform.GetChild(0).GetComponent<TMP_Text>().color = new Color32(0, 0, 0, 255);
+                _options[i].transform.GetChild(1).GetComponent<TMP_Text>().color = new Color32(76, 76, 76, 255);
+                _options[i].transform.GetChild(2).GetComponent<TMP_Text>().color = new Color32(51, 51, 51, 255);
+                _options[i].SetActive(true);
+            } 
+            else
+            {
+                _options[i].transform.GetChild(0).GetComponent<TMP_Text>().color = new Color32(128, 128, 128, 255);
+                _options[i].transform.GetChild(1).GetComponent<TMP_Text>().color = new Color32(153, 153, 153, 255);
+                _options[i].transform.GetChild(2).GetComponent<TMP_Text>().color = new Color32(128, 128, 128, 255);
+                _options[i].SetActive(false);
+            }
+            
         }
         selectedIndex = idx;
 
         _nextButton.interactable = true;
+        _nextButton.GetComponentInChildren<TMP_Text>().color = Color.white;
         _nextButton.GetComponent<Image>().sprite = _activeButtonSprite;
     }
 
@@ -49,7 +63,7 @@ public class MagoLegoMenu : MonoBehaviour
 
     void OnNextClicked()
     {
-        PlayerPrefs.SetString("SelectedMagoLego", _options[selectedIndex].transform.Find("Course").GetComponent<Text>().text);
+        PlayerPrefs.SetString("SelectedMagoLego", _options[selectedIndex].transform.Find("Course").GetComponent<TMP_Text>().text);
         PlayerPrefs.Save();
         
         _dialogueStage.StartDialogue();

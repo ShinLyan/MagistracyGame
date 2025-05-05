@@ -18,7 +18,6 @@ public class Panel : MonoBehaviour
         } else
         {
             _button.sprite = _normalPanelSprite;
-        }
-        _contentGroup.alpha = active ? 1f : 0.6f;
+        }        
     }
 }
