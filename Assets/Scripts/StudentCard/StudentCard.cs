@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,8 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
         [SerializeField] private Button _button;
         [SerializeField] private Image _stamp;
         [SerializeField] private RectTransform _studentCard;
-        [SerializeField] private Sprite _yellowButtonSprite;
+        [SerializeField] private TMP_Text _dateText;
+        [SerializeField] private TMP_Text _wordCountText;
 
         [FormerlySerializedAs("_dialogStage")] [SerializeField]
         private DialogueStage _dialogueStage;
@@ -24,8 +26,8 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
 
         private void Start()
         {
-            _button.onClick.AddListener(OnContinueClicked);
             _nameInputField.onEndEdit.AddListener(OnNameEntered);
+            _nameInputField.onValueChanged.AddListener(OnNameChanged);
         }
 
         private void OnNameEntered(string input)
@@ -33,24 +35,28 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
             if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter))
                 if (!string.IsNullOrWhiteSpace(input))
                 {
-                    _button.interactable = true;
                     _nameInputField.interactable = false;
-                    _button.image.sprite = _yellowButtonSprite;
                     _nameInputField.DeactivateInputField();
+                    OnContinueClicked();
                 }
+        }
+
+        private void OnNameChanged(string input)
+        {
+            _wordCountText.text = $"{input.Length}/500";
         }
 
         private void OnContinueClicked()
         {
             PlayerPrefs.SetString("PlayerNickname", _nameInputField.text);
             PlayerPrefs.Save();
-            _button.interactable = false;
             StartCoroutine(StampAnimationCoroutine());
         }
 
         private IEnumerator StampAnimationCoroutine()
         {
             float timer = 0;
+            _dateText.text = DateTime.Now.ToString("dd.MM.yyyy");
             while (timer < StampFadeDuration)
             {
                 timer += Time.deltaTime;
