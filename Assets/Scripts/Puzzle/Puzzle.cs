@@ -3,10 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.TestTools;
+using System;
 
 public class DiplomaPuzzle : MonoBehaviour
 {
-    [SerializeField] private float _highlightThickness = 5f;
+    [SerializeField] private Transform coverPage;
+    [SerializeField] private Transform secondHalf;
     [SerializeField] private float _vibrationIntensity = 10f;
     [SerializeField] private float _fadeDuration = 1f;
     [SerializeField] private float _flipDuration = 1f;
@@ -15,11 +18,14 @@ public class DiplomaPuzzle : MonoBehaviour
     [SerializeField] private List<PuzzlePiece> _pieces = new List<PuzzlePiece>();
     [SerializeField] private Button _continueButton;
     [SerializeField] private GameObject _frontSide;
+    [SerializeField] private GameObject _backSide;
     [SerializeField] private GameObject _texts;
     [SerializeField] private GameObject _piecesBar;
+    [SerializeField] private Image _diplomaImage;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _practiceText;
     [SerializeField] private TMP_Text _magoLegoText;
+    [SerializeField] private TMP_Text _dateText;
 
     private int _currentSlotIndex = 0;
     private bool _isAnimating = false;
@@ -59,7 +65,7 @@ public class DiplomaPuzzle : MonoBehaviour
     {
         for (int i = 0; i < _slots.Count; i++)
         {
-            _slots[i].Highlight(i == _currentSlotIndex, _highlightThickness);
+            _slots[i].Highlight(i == _currentSlotIndex);
         }
     }
 
@@ -78,16 +84,6 @@ public class DiplomaPuzzle : MonoBehaviour
             StartCoroutine(ProcessWrongSelection(piece));
         }
     }
-
-    private void SetChildrenActiveState(bool active)
-    {
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(active);
-        }
-    }
-
-
 
     private IEnumerator ProcessCorrectSelection(PuzzlePiece piece)
     {
@@ -134,58 +130,52 @@ public class DiplomaPuzzle : MonoBehaviour
 
     private IEnumerator CompletePuzzle()
     {
+        _dateText.text = DateTime.Now.ToString("dd.MM.yyyy");
         float fadeTimer = 0f;
-        List<Image> borders = new List<Image>();
-
-        foreach (var slot in _slots)
-        {
-            borders.Add(slot.GetBorderImage());
-        }
-
+        _piecesBar.gameObject.SetActive(false);
         while (fadeTimer < _fadeDuration)
         {
             fadeTimer += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, fadeTimer / _fadeDuration);
-
-            foreach (var border in borders)
-            {
-                Color color = border.color;
-                color.a = alpha;
-                border.color = color;
-            }
+            float alpha = Mathf.Lerp(0f, 1f, fadeTimer / _fadeDuration);
+            Color color = _diplomaImage.color;
+            color.a = alpha;
+            _diplomaImage.color = color;
             yield return null;
         }
 
         yield return new WaitForSeconds(_delayBeforeFlip);
 
+        float flipDuration = 1f;
+        Quaternion startRotation = Quaternion.Euler(0, 0, 0);
+        Quaternion endRotation = Quaternion.Euler(0, -180, 0);
+
+        Vector3 coverStartPosition = coverPage.localPosition;
+        Vector3 halfStartPosition = secondHalf.localPosition;
+        Vector3 coverEndPosition = new Vector3(0f, 0f, 0f);
+        Vector3 halfEndPosition = new Vector3(337f, 0f, 0f);
         float flipTimer = 0f;
-
-        while (flipTimer < _flipDuration / 2)
+        bool swapped = false;
+        while (flipTimer < flipDuration)
         {
+            float t = flipTimer / flipDuration;
+            t = Mathf.Clamp01(t);
+            coverPage.localRotation = Quaternion.Slerp(startRotation, endRotation, t);
+            coverPage.localPosition = Vector3.Lerp(coverStartPosition, coverEndPosition, t);
+            secondHalf.localPosition = Vector3.Lerp(halfStartPosition, halfEndPosition, t);
+            if (!swapped && t >= 0.5f)
+            {
+                _frontSide.SetActive(false);
+                _backSide.SetActive(true);
+                swapped = true;
+            }
             flipTimer += Time.deltaTime;
-            float angle = Mathf.Lerp(0f, 90f, flipTimer / _flipDuration * 2);         
-            _frontSide.transform.rotation = Quaternion.Euler(0, angle, 0);
             yield return null;
         }
-        yield return new WaitForSeconds(_flipDuration / 2);
 
-        SetChildrenActiveState(false);
-        _texts.SetActive(true);
+        coverPage.localRotation = endRotation;
+        secondHalf.localPosition = halfEndPosition;
+        coverPage.localPosition = coverEndPosition;
 
-        _frontSide.transform.rotation = Quaternion.Euler(0, -90f, 0);
-
-        flipTimer = 0f;
-
-        while (flipTimer < _flipDuration / 2)
-        {
-            flipTimer += Time.deltaTime;
-            float angle = Mathf.Lerp(-90f, 0f, flipTimer / _flipDuration * 2);
-            _frontSide.transform.rotation = Quaternion.Euler(0, angle, 0);
-            yield return null;
-        }
-        
-        _continueButton.gameObject.SetActive(true);
-        _piecesBar.gameObject.SetActive(false);
         _isAnimating = false;
     }
 }

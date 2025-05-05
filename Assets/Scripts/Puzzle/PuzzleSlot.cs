@@ -6,19 +6,21 @@ public class PuzzleSlot : MonoBehaviour
     [SerializeField] private int _requiredShapeID;
     [SerializeField] private GameObject _slotImage;
     [SerializeField] private GameObject _border;
+    [SerializeField] private Sprite _orangeBorderSprite;
+    [SerializeField] private Sprite _normalBorderSprite;
 
     public int RequiredShapeID => _requiredShapeID;
 
-    public void Highlight(bool state, float thickness)
+    public void Highlight(bool state)
     {
-        if (!_border.TryGetComponent<Outline>(out var outline)) outline = _border.AddComponent<Outline>();
-
-        outline.enabled = state;
-
         if (state)
         {
-            outline.effectDistance = new Vector2(thickness, thickness);
-            outline.effectColor = Color.yellow;
+            _border.transform.SetAsLastSibling();
+            _border.GetComponent<Image>().sprite = _orangeBorderSprite;
+        }
+        else
+        {
+            _border.GetComponent<Image>().sprite = _normalBorderSprite;
         }
     }
 
