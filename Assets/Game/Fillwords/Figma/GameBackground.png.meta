@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 143d239ff9bef7246a09b73543ad91ba
+guid: cf1d772fbf8a6d54c921f111a70f548f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8430137894388489581
-    second: Window_0
+      213: 5190299140411600157
+    second: GameBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Window_0
+      name: GameBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 242
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3922a65ff32220b80800000000000000
-      internalID: -8430137894388489581
+      spriteID: d1daf3e9195a70840800000000000000
+      internalID: 5190299140411600157
       vertices: []
       indices: 
       edges: []

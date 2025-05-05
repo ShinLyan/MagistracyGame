@@ -63,8 +63,27 @@ namespace MagistracyGame.FillWords
         private void Awake()
         {
             _rows = GetComponentsInChildren<Row>();
-            _wordsToGuess = _wordsContainer.GetComponentsInChildren<TextMeshProUGUI>();
+            _wordsToGuess = FindObjectsOfType<TextMeshProUGUI>();
             _nextLevelButton.onClick.AddListener(GoToNextLevel);
+
+            List<TextMeshProUGUI> filteredWords = new List<TextMeshProUGUI>();
+            foreach (var text in _wordsToGuess)
+            {
+                if (text.GetComponentInParent<WordToGuessController>() != null)
+                {
+                    filteredWords.Add(text);
+                }
+            }
+            _wordsToGuess = filteredWords.ToArray();
+
+            for (int i = 0; i < _wordsToGuess.Length && i < _targetWords.Length; i++)
+            {
+                WordToGuessController controller = _wordsToGuess[i].GetComponentInParent<WordToGuessController>();
+                if (controller != null)
+                {
+                    controller.SetWord(_targetWords[i]);
+                }
+            }
         }
 
         private void Start()
@@ -248,12 +267,17 @@ namespace MagistracyGame.FillWords
         private void StrikeThroughWord(string word)
         {
             foreach (var wordText in _wordsToGuess)
+            {
                 if (string.Equals(wordText.text, word, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    wordText.text = $"<s>{wordText.text}</s>";
-                    wordText.color = Color.gray;
+                    WordToGuessController controller = wordText.GetComponentInParent<WordToGuessController>();
+                    if (controller != null)
+                    {
+                        controller.MarkAsFound();
+                    }
                     break;
                 }
+            }
         }
 
         public bool IsGameFinished { get; private set; }
