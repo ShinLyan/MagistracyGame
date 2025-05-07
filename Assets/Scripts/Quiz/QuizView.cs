@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace MagistracyGame.Quiz
@@ -12,8 +13,9 @@ namespace MagistracyGame.Quiz
         [SerializeField] private Button[] _answerButtons;
 
         [Header("Guide")]
-        [SerializeField] private Button _guidePanelButton;
+        [SerializeField] private GameObject _guidePanel;
         [SerializeField] private TextMeshProUGUI _guideText;
+        [SerializeField] private Button _nextQuestionButton;
 
         [Header("Outline Colors")]
         [SerializeField] private Color _correctColor = new(0, 1, 0, 1);
@@ -26,6 +28,42 @@ namespace MagistracyGame.Quiz
         [SerializeField] private Color _defaultBackgroundColor = new(1, 1, 1, 1);
 
         private void Start() => HideGuidePanel();
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0) && _guidePanel.activeInHierarchy)
+            {
+                if (!IsPointerOverButton(_nextQuestionButton))
+                {
+                    if (_guideText != null && TryGetComponent<TextTyper>(out var textTyper))
+                    {
+                        textTyper.CompleteTextImmediately();
+                    }
+                }
+            }
+        }
+
+        private bool IsPointerOverButton(Button button)
+        {
+            if (button == null || !button.gameObject.activeInHierarchy)
+                return false;
+
+            var pointerData = new PointerEventData(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
+            var raycastResults = new System.Collections.Generic.List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, raycastResults);
+
+            foreach (var result in raycastResults)
+            {
+                if (result.gameObject == button.gameObject || result.gameObject.transform.IsChildOf(button.transform))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public void UpdateQuestionCounter(int current, int total)
         {
@@ -92,17 +130,22 @@ namespace MagistracyGame.Quiz
 
         public void ShowGuidePanel(string text, Action onClick)
         {
-            _guidePanelButton.gameObject.SetActive(true);
+            _guidePanel.SetActive(true);
             _guideText.text = text;
 
-            _guidePanelButton.onClick.RemoveAllListeners();
-            _guidePanelButton.onClick.AddListener(() => onClick?.Invoke());
+            _nextQuestionButton.gameObject.SetActive(true);
+            _nextQuestionButton.onClick.RemoveAllListeners();
+            _nextQuestionButton.onClick.AddListener(() =>
+            {
+                onClick?.Invoke();
+            });
         }
 
         public void HideGuidePanel()
         {
-            _guidePanelButton.gameObject.SetActive(false);
-            _guidePanelButton.onClick.RemoveAllListeners();
+            _guidePanel.SetActive(false);
+            _nextQuestionButton.gameObject.SetActive(false);
+            _nextQuestionButton.onClick.RemoveAllListeners();
         }
     }
 }

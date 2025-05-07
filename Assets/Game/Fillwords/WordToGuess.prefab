@@ -89,8 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a2f9694d37182479d701159c509327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backgroundImage: {fileID: 0}
-  _wordText: {fileID: 0}
+  _backgroundImage: {fileID: 783701509356070258}
+  _wordText: {fileID: 5424810977603402979}
   _defaultSprite: {fileID: -2575982113956554485, guid: e2c7bcd6fcd565e42a524caf01f69015, type: 3}
   _foundSprite: {fileID: 2584041542794470017, guid: bb0e02a2b78b77a47866fb11759ae5c0, type: 3}
 --- !u!1 &3067920338070371213
