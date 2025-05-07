@@ -17,6 +17,7 @@ namespace MagistracyGame.FillWords
         [SerializeField] private UnityEngine.UI.Button _nextLevelButton;
         [SerializeField] private GameObject _startPanel;
         [SerializeField] private GameObject _wordsContainer;
+        [SerializeField] private GameObject _dimOverlay;
 
         private Tile _startTile;
         private bool _isDragging;
@@ -54,7 +55,6 @@ namespace MagistracyGame.FillWords
             new Color(0.016f, 0.314f, 0.733f), // #0450BB
             new Color(0.455f, 0.259f, 0.89f)   // #7442E3
         };
-
 
         private bool IsGameComplete => _foundWords.Count == _targetWords.Length;
 
@@ -95,22 +95,24 @@ namespace MagistracyGame.FillWords
         private void ShowStartPanel()
         {
             _startPanel.SetActive(true);
+            _dimOverlay.SetActive(true);
             IsGameFinished = true;
         }
         
         public void StartGame()
         {
             _startPanel.SetActive(false);
+            _dimOverlay.SetActive(false);
             IsGameFinished = false;
         }
-        
         
         private void GoToNextLevel()
         {
             _winPanel.SetActive(false);
+            _dimOverlay.SetActive(false);
             _startPanel.SetActive(true);
+            _dimOverlay.SetActive(true);
         }
-
 
         private void InitializeBoardLetters()
         {
@@ -290,6 +292,7 @@ namespace MagistracyGame.FillWords
             OnGameFinished?.Invoke();
             
             _winPanel.SetActive(true);
+            _dimOverlay.SetActive(true);
         }
     }
 }
