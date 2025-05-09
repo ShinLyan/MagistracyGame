@@ -13,8 +13,7 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
         [SerializeField] private Button _button;
         [SerializeField] private Image _stamp;
         [SerializeField] private RectTransform _studentCard;
-        [SerializeField] private Sprite _yellowButtonSprite;
-
+        [SerializeField] private NicknameFilter _nicknameFilter;
         [FormerlySerializedAs("_dialogStage")] [SerializeField]
         private DialogueStage _dialogueStage;
 
@@ -33,10 +32,9 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
             if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter))
                 if (!string.IsNullOrWhiteSpace(input))
                 {
-                    _button.interactable = true;
                     _nameInputField.interactable = false;
-                    _button.image.sprite = _yellowButtonSprite;
                     _nameInputField.DeactivateInputField();
+                    OnContinueClicked();
                 }
         }
 
