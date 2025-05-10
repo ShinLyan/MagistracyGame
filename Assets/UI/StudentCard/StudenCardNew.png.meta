@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 07131b27b1955c641930337691543c7c
+guid: 6b43a02e7e260034891c1e38946d613c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5866281921551675546
-    second: Stamp_0
+      213: -3574816774187198521
+    second: StudenCardNew_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stamp_0
+      name: StudenCardNew_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 24
-        width: 223
-        height: 223
+        x: 1
+        y: 1
+        width: 1372
+        height: 472
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a903266a358396150800000000000000
-      internalID: 5866281921551675546
+      spriteID: 7c7d6758513b36ec0800000000000000
+      internalID: -3574816774187198521
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Stamp_0: 5866281921551675546
+      StudenCardNew_0: -3574816774187198521
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,67 +1,70 @@
 fileFormatVersion: 2
-guid: 9aa5153e4524dfc4186f0a02a23a7071
+guid: 75c995c3f4c89984f81d27133ba451ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6972489924756748348
-    second: hse_logo_0
+      213: -5657839617151614368
+    second: hseLogo_0
   - first:
-      213: -8150560959797041824
-    second: hse_logo_1
+      213: -3959310965583426740
+    second: hseLogo_1
   - first:
-      213: -7985610012061052143
-    second: hse_logo_2
+      213: 4963149633841537204
+    second: hseLogo_2
   - first:
-      213: -8816924446227583947
-    second: hse_logo_3
+      213: -2294678454519700757
+    second: hseLogo_3
   - first:
-      213: 6697544901552229132
-    second: hse_logo_4
+      213: -5496687083244233634
+    second: hseLogo_4
   - first:
-      213: -6304941026511187668
-    second: hse_logo_5
+      213: 3303947961687040814
+    second: hseLogo_5
   - first:
-      213: 7360329080434113046
-    second: hse_logo_6
+      213: 7077611955159195070
+    second: hseLogo_6
   - first:
-      213: -610162192779049981
-    second: hse_logo_7
+      213: 9016682968462984013
+    second: hseLogo_7
   - first:
-      213: -5179527201875788346
-    second: hse_logo_8
+      213: 7214608926052954247
+    second: hseLogo_8
   - first:
-      213: 2092813582207094528
-    second: hse_logo_9
+      213: 6568323394587124504
+    second: hseLogo_9
   - first:
-      213: -3782958921091519815
-    second: hse_logo_10
+      213: 3547717383253804324
+    second: hseLogo_10
   - first:
-      213: 6833987908847134598
-    second: hse_logo_11
+      213: -6872031836743904890
+    second: hseLogo_11
   - first:
-      213: 8830780023860362776
-    second: hse_logo_12
+      213: 2429256638654129855
+    second: hseLogo_12
   - first:
-      213: -2894818072666562750
-    second: hse_logo_13
+      213: -4784709235668530558
+    second: hseLogo_13
   - first:
-      213: -3111482715441928678
-    second: hse_logo_14
+      213: 1008782927188969953
+    second: hseLogo_14
   - first:
-      213: -3994493054549116143
-    second: hse_logo_15
+      213: -7671855608332239053
+    second: hseLogo_15
   - first:
-      213: 2939421603891328398
-    second: hse_logo_16
+      213: -2096809312175904670
+    second: hseLogo_16
   - first:
-      213: -8290292667966321028
-    second: hse_logo_17
+      213: 3061199750342410280
+    second: hseLogo_17
   - first:
-      213: -4867253985862341548
-    second: hse_logo_18
+      213: 1985665512287556505
+    second: hseLogo_18
   - first:
-      213: 1709266933222660970
-    second: hse_logo_19
+      213: 3972244902334466548
+    second: hseLogo_19
+  - first:
+      213: 1633902654631169917
+    second: hseLogo_20
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,9 +106,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -154,20 +157,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -183,13 +173,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hse_logo_0
+      name: hseLogo_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 41
-        height: 40
+        width: 51
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,152 +188,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c742e2fa5dbc3f90800000000000000
-      internalID: -6972489924756748348
+      spriteID: 062cb8f38d05b71b0800000000000000
+      internalID: -5657839617151614368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hse_logo_1
+      name: hseLogo_1
       rect:
         serializedVersion: 2
-        x: 52
-        y: 22
-        width: 9
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06561279df363ee80800000000000000
-      internalID: -8150560959797041824
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_2
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 22
-        width: 9
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1135c4ce00a6d2190800000000000000
-      internalID: -7985610012061052143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_3
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 21
-        width: 16
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 53ca5232eedf3a580800000000000000
-      internalID: -8816924446227583947
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_4
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 22
-        width: 16
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0bcf345a9572fc50800000000000000
-      internalID: 6697544901552229132
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_5
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 22
-        width: 20
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2193099a895088a0800000000000000
-      internalID: -6304941026511187668
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_6
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 22
-        width: 16
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 61ab04d4d44252660800000000000000
-      internalID: 7360329080434113046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_7
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 22
+        x: 65
+        y: 27
         width: 11
-        height: 13
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,20 +210,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 304080ce7b44887f0800000000000000
-      internalID: -610162192779049981
+      spriteID: c4b471577a3bd09c0800000000000000
+      internalID: -3959310965583426740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hse_logo_8
+      name: hseLogo_2
       rect:
         serializedVersion: 2
-        x: 146
-        y: 21
+        x: 76
+        y: 27
         width: 14
-        height: 14
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -374,20 +232,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cd78b3c37f9e18b0800000000000000
-      internalID: -5179527201875788346
+      spriteID: 4b02c3ccb46a0e440800000000000000
+      internalID: 4963149633841537204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hse_logo_9
+      name: hseLogo_3
       rect:
         serializedVersion: 2
-        x: 158
-        y: 22
-        width: 12
-        height: 13
+        x: 90
+        y: 27
+        width: 15
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -396,20 +254,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00f01946dda2b0d10800000000000000
-      internalID: 2092813582207094528
+      spriteID: be26c947a1aa720e0800000000000000
+      internalID: -2294678454519700757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hse_logo_10
+      name: hseLogo_4
       rect:
         serializedVersion: 2
-        x: 169
-        y: 22
-        width: 11
-        height: 13
+        x: 105
+        y: 27
+        width: 18
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -418,152 +276,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9bae17c77ea308bc0800000000000000
-      internalID: -3782958921091519815
+      spriteID: e5cdfb17838d7b3b0800000000000000
+      internalID: -5496687083244233634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hse_logo_11
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 5
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 687e52a8bc337de50800000000000000
-      internalID: 6833987908847134598
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_12
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 5
-        width: 11
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 81effcbe4ab3d8a70800000000000000
-      internalID: 8830780023860362776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_13
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 5
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24f1451ec4a83d7d0800000000000000
-      internalID: -2894818072666562750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_14
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 5
-        width: 12
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a16e055a4fac1d4d0800000000000000
-      internalID: -3111482715441928678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_15
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 5
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11bb5d90bb5b098c0800000000000000
-      internalID: -3994493054549116143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_16
-      rect:
-        serializedVersion: 2
-        x: 109
-        y: 5
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e853d01006ceac820800000000000000
-      internalID: 2939421603891328398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hse_logo_17
+      name: hseLogo_5
       rect:
         serializedVersion: 2
         x: 123
-        y: 5
-        width: 11
-        height: 14
+        y: 27
+        width: 14
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -572,20 +298,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c7e87d90eb6f2fc80800000000000000
-      internalID: -8290292667966321028
+      spriteID: e236bb48a2bf9dd20800000000000000
+      internalID: 3303947961687040814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hse_logo_18
+      name: hseLogo_6
       rect:
         serializedVersion: 2
-        x: 134
-        y: 5
+        x: 137
+        y: 27
         width: 11
-        height: 14
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -594,20 +320,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45c2215a94a047cb0800000000000000
-      internalID: -4867253985862341548
+      spriteID: ebd525d039ab83260800000000000000
+      internalID: 7077611955159195070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hse_logo_19
+      name: hseLogo_7
       rect:
         serializedVersion: 2
-        x: 144
-        y: 5
-        width: 11
-        height: 14
+        x: 154
+        y: 27
+        width: 19
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -616,8 +342,294 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a6bde0d383988b710800000000000000
-      internalID: 1709266933222660970
+      spriteID: d430d8b2361b12d70800000000000000
+      internalID: 9016682968462984013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_8
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 27
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 780bfb6f7907f1460800000000000000
+      internalID: 7214608926052954247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_9
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 27
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 813e040b35f572b50800000000000000
+      internalID: 6568323394587124504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_10
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 27
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4254258d9260c3130800000000000000
+      internalID: 3547717383253804324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_11
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 27
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68154bd3473a1a0a0800000000000000
+      internalID: -6872031836743904890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_12
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 7
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb62d37ca0476b120800000000000000
+      internalID: 2429256638654129855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_13
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 7
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28a4276fc4c499db0800000000000000
+      internalID: -4784709235668530558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_14
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 7
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e9c39e3abaeffd00800000000000000
+      internalID: 1008782927188969953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_15
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 7
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33fb441b8f7188590800000000000000
+      internalID: -7671855608332239053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_16
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 7
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 268260a3a03a6e2e0800000000000000
+      internalID: -2096809312175904670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_17
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 7
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8208ca934f09b7a20800000000000000
+      internalID: 3061199750342410280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_18
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 7
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993d4ae43408e8b10800000000000000
+      internalID: 1985665512287556505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_19
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 7
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f9808c51bf302730800000000000000
+      internalID: 3972244902334466548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hseLogo_20
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 7
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7fcbdebec9cca610800000000000000
+      internalID: 1633902654631169917
       vertices: []
       indices: 
       edges: []
@@ -626,7 +638,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -636,26 +648,27 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hse_logo_0: -6972489924756748348
-      hse_logo_1: -8150560959797041824
-      hse_logo_10: -3782958921091519815
-      hse_logo_11: 6833987908847134598
-      hse_logo_12: 8830780023860362776
-      hse_logo_13: -2894818072666562750
-      hse_logo_14: -3111482715441928678
-      hse_logo_15: -3994493054549116143
-      hse_logo_16: 2939421603891328398
-      hse_logo_17: -8290292667966321028
-      hse_logo_18: -4867253985862341548
-      hse_logo_19: 1709266933222660970
-      hse_logo_2: -7985610012061052143
-      hse_logo_3: -8816924446227583947
-      hse_logo_4: 6697544901552229132
-      hse_logo_5: -6304941026511187668
-      hse_logo_6: 7360329080434113046
-      hse_logo_7: -610162192779049981
-      hse_logo_8: -5179527201875788346
-      hse_logo_9: 2092813582207094528
+      hseLogo_0: -5657839617151614368
+      hseLogo_1: -3959310965583426740
+      hseLogo_10: 3547717383253804324
+      hseLogo_11: -6872031836743904890
+      hseLogo_12: 2429256638654129855
+      hseLogo_13: -4784709235668530558
+      hseLogo_14: 1008782927188969953
+      hseLogo_15: -7671855608332239053
+      hseLogo_16: -2096809312175904670
+      hseLogo_17: 3061199750342410280
+      hseLogo_18: 1985665512287556505
+      hseLogo_19: 3972244902334466548
+      hseLogo_2: 4963149633841537204
+      hseLogo_20: 1633902654631169917
+      hseLogo_3: -2294678454519700757
+      hseLogo_4: -5496687083244233634
+      hseLogo_5: 3303947961687040814
+      hseLogo_6: 7077611955159195070
+      hseLogo_7: 9016682968462984013
+      hseLogo_8: 7214608926052954247
+      hseLogo_9: 6568323394587124504
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

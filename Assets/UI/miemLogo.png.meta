@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: 30e8a20ec48f9e444bc704811ca65219
+guid: 6e1437f209b089745864a8fc20eafa58
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2290617870733991645
-    second: miem_logo_0
+      213: 7947547908151467653
+    second: miemLogo_0
   - first:
-      213: 3538658130639648744
-    second: miem_logo_1
+      213: -2928212483537426394
+    second: miemLogo_1
   - first:
-      213: 2329927322947325805
-    second: miem_logo_2
+      213: -5976247993659101252
+    second: miemLogo_2
   - first:
-      213: 6105010443224648712
-    second: miem_logo_3
-  - first:
-      213: 4834413855210824937
-    second: miem_logo_4
-  - first:
-      213: -6303979168195819379
-    second: miem_logo_5
-  - first:
-      213: -3329797737392433782
-    second: miem_logo_6
+      213: 4718849154420203900
+    second: miemLogo_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -64,9 +55,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -115,20 +106,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -144,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: miem_logo_0
+      name: miemLogo_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 36
-        height: 33
+        width: 46
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3212dbace271630e0800000000000000
-      internalID: -2290617870733991645
+      spriteID: 58e54cce6bc5b4e60800000000000000
+      internalID: 7947547908151467653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: miem_logo_1
+      name: miemLogo_1
       rect:
         serializedVersion: 2
-        x: 36
+        x: 46
         y: 0
-        width: 34
-        height: 33
+        width: 42
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,42 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e7f25a32d6db1130800000000000000
-      internalID: 3538658130639648744
+      spriteID: 62823e3b246ec57d0800000000000000
+      internalID: -2928212483537426394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: miem_logo_2
+      name: miemLogo_2
       rect:
         serializedVersion: 2
-        x: 70
-        y: 24
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d6f80c44e80955020800000000000000
-      internalID: 2329927322947325805
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miem_logo_3
-      rect:
-        serializedVersion: 2
-        x: 78
+        x: 89
         y: 0
-        width: 26
-        height: 33
+        width: 42
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 80c847207aa59b450800000000000000
-      internalID: 6105010443224648712
+      spriteID: cbfee400d1a101da0800000000000000
+      internalID: -5976247993659101252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: miem_logo_4
+      name: miemLogo_3
       rect:
         serializedVersion: 2
-        x: 104
+        x: 131
         y: 0
-        width: 36
-        height: 33
+        width: 45
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,52 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e4611999c9471340800000000000000
-      internalID: 4834413855210824937
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miem_logo_5
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 14
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d88c930b854c388a0800000000000000
-      internalID: -6303979168195819379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miem_logo_6
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 0
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a8513d0999e2ac1d0800000000000000
-      internalID: -3329797737392433782
+      spriteID: c716edded48bc7140800000000000000
+      internalID: 4718849154420203900
       vertices: []
       indices: 
       edges: []
@@ -301,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -311,13 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      miem_logo_0: -2290617870733991645
-      miem_logo_1: 3538658130639648744
-      miem_logo_2: 2329927322947325805
-      miem_logo_3: 6105010443224648712
-      miem_logo_4: 4834413855210824937
-      miem_logo_5: -6303979168195819379
-      miem_logo_6: -3329797737392433782
+      miemLogo_0: 7947547908151467653
+      miemLogo_1: -2928212483537426394
+      miemLogo_2: -5976247993659101252
+      miemLogo_3: 4718849154420203900
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
