@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GrayButton_0: -7787508455690891366
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

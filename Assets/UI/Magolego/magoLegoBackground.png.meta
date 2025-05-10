@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 45f3ab91dfb146b40a9d28863b728fc5
+guid: bab411cc1c96ca940899668bb2016e98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5469945556982414691
-    second: Rectangle 66_0
+      213: 4861793323344200345
+    second: magoLegoBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rectangle 66_0
+      name: magoLegoBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 124
-        height: 124
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 36db9a8c08629eb40800000000000000
-      internalID: 5469945556982414691
+      spriteID: 9920c49c44f887340800000000000000
+      internalID: 4861793323344200345
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Rectangle 66_0: 5469945556982414691
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

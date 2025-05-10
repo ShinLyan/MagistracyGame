@@ -3,21 +3,12 @@ using UnityEngine.UI;
 
 public class Panel : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup _contentGroup; 
-    [SerializeField] private Image _button;     
     [SerializeField] private Sprite _activePanelSprite;
     [SerializeField] private Sprite _normalPanelSprite;
 
+    private Image _panelImage;
 
-    // включить/выключить выделение
-    public void SetActive(bool active)
-    {
-        if (active)
-        {
-            _button.sprite = _activePanelSprite;
-        } else
-        {
-            _button.sprite = _normalPanelSprite;
-        }        
-    }
+    private void Awake() => _panelImage = GetComponent<Image>();
+
+    public void SetActive(bool isActive) => _panelImage.sprite = isActive ? _activePanelSprite : _normalPanelSprite;
 }
