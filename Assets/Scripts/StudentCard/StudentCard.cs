@@ -1,53 +1,45 @@
 using System;
 using System.Collections;
+using MagistracyGame.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace MagistracyGame.Scripts.StudentCard.StudentCard
-
+namespace MagistracyGame.StudentCard
 {
     public class StudentCard : MonoBehaviour
     {
         [SerializeField] private TMP_InputField _nameInputField;
-        [SerializeField] private Button _button;
         [SerializeField] private Image _stamp;
         [SerializeField] private RectTransform _studentCard;
         [SerializeField] private TMP_Text _dateText;
         [SerializeField] private TMP_Text _wordCountText;
+        [SerializeField] private UIButton _continueButton;
 
-        [FormerlySerializedAs("_dialogStage")] [SerializeField]
-        private DialogueStage _dialogueStage;
-
-        private const float StampFadeDuration = 1f;
-        private const float PauseDuration = 2f;
-        private const float SlideOutDuration = 0.5f;
+        private void Awake()
+        {
+            _nameInputField.onValueChanged.AddListener(OnNameChanged);
+            _continueButton.Button.onClick.AddListener(OnClickContinue);
+        }
 
         private void Start()
         {
-            _nameInputField.onEndEdit.AddListener(OnNameEntered);
-            _nameInputField.onValueChanged.AddListener(OnNameChanged);
-        }
-
-        private void OnNameEntered(string input)
-        {
-            if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter))
-                if (!string.IsNullOrWhiteSpace(input))
-                {
-                    _nameInputField.interactable = false;
-                    _nameInputField.DeactivateInputField();
-                    OnContinueClicked();
-                }
+            _continueButton.SetInteractable(false);
         }
 
         private void OnNameChanged(string input)
         {
             _wordCountText.text = $"{input.Length}/500";
+
+            _continueButton.SetInteractable(!string.IsNullOrWhiteSpace(input));
         }
 
-        private void OnContinueClicked()
+        private void OnClickContinue()
         {
+            _continueButton.SetInteractable(false);
+            _nameInputField.interactable = false;
+            _nameInputField.DeactivateInputField();
+
             PlayerPrefs.SetString("PlayerNickname", _nameInputField.text);
             PlayerPrefs.Save();
             StartCoroutine(StampAnimationCoroutine());
@@ -55,6 +47,10 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
 
         private IEnumerator StampAnimationCoroutine()
         {
+            const float StampFadeDuration = 1f;
+            const float PauseDuration = 2f;
+            const float SlideOutDuration = 0.5f;
+
             float timer = 0;
             _dateText.text = DateTime.Now.ToString("dd.MM.yyyy");
             while (timer < StampFadeDuration)
@@ -80,7 +76,7 @@ namespace MagistracyGame.Scripts.StudentCard.StudentCard
             }
 
             yield return new WaitForSeconds(SlideOutDuration);
-            _dialogueStage.StartDialogue();
+            FindFirstObjectByType<DialogueStage>().StartDialogue();
         }
     }
 }
