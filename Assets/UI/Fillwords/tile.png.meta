@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/UI/DialogSystem/backButton.png.meta
-guid: 184f33d2b0c5e7846bc6c77b882cbf1a
+guid: f24982831bd1d5740905933ba94ed0f7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 527953631270165849
-    second: backButton_0
-  - first:
-      213: -7715037564853632802
-    second: backButton_1
-========
-guid: 70d593c0e34cd4c4d8b3e4e9b7f620c4
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -3830747905154832617
-    second: DownPanel_0
->>>>>>>> master:Assets/UI/Magolego/DownPanel.png.meta
+      213: 7399533318584292489
+    second: tile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,20 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -138,23 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/UI/DialogSystem/backButton.png.meta
-      name: backButton_0
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 54
-        width: 424
-        height: 404
-========
-      name: DownPanel_0
+      name: tile_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1374
-        height: 242
->>>>>>>> master:Assets/UI/Magolego/DownPanel.png.meta
+        width: 101
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,13 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-<<<<<<<< HEAD:Assets/UI/DialogSystem/backButton.png.meta
-      spriteID: 95d5cb9c70ba35700800000000000000
-      internalID: 527953631270165849
-========
-      spriteID: 717ac21931376dac0800000000000000
-      internalID: -3830747905154832617
->>>>>>>> master:Assets/UI/Magolego/DownPanel.png.meta
+      spriteID: 98452ed495c60b660800000000000000
+      internalID: 7399533318584292489
       vertices: []
       indices: 
       edges: []
@@ -178,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f6abdc02b2c41c24ab0a509a356f0a2b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -188,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-<<<<<<<< HEAD:Assets/UI/DialogSystem/backButton.png.meta
-      backButton_0: 527953631270165849
-========
-      DownPanel_0: -3830747905154832617
->>>>>>>> master:Assets/UI/Magolego/DownPanel.png.meta
+      tile_0: 7399533318584292489
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

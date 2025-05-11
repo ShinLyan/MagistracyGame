@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/UI/DialogSystem/backButton.png.meta
-guid: 184f33d2b0c5e7846bc6c77b882cbf1a
+<<<<<<<< HEAD:Assets/Game/Merge/Базы Данных.png.meta
+guid: 5f1ee9f68d2d4c14180bea09b7ee087e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 527953631270165849
-    second: backButton_0
-  - first:
-      213: -7715037564853632802
-    second: backButton_1
+      213: -2076541815991202156
+    second: image 3_0
 ========
-guid: 70d593c0e34cd4c4d8b3e4e9b7f620c4
+guid: 792194f5eacb9b94a8ec4da5f595c075
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3830747905154832617
-    second: DownPanel_0
->>>>>>>> master:Assets/UI/Magolego/DownPanel.png.meta
+      213: -6058905279624124680
+    second: PanelDisabled_0
+>>>>>>>> master:Assets/UI/PanelDisabled.png.meta
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -108,68 +105,41 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/UI/DialogSystem/backButton.png.meta
-      name: backButton_0
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 54
-        width: 424
-        height: 404
+<<<<<<<< HEAD:Assets/Game/Merge/Базы Данных.png.meta
+      name: image 3_0
 ========
-      name: DownPanel_0
+      name: PanelDisabled_0
+>>>>>>>> master:Assets/UI/PanelDisabled.png.meta
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1374
-        height: 242
->>>>>>>> master:Assets/UI/Magolego/DownPanel.png.meta
+<<<<<<<< HEAD:Assets/Game/Merge/Базы Данных.png.meta
+        width: 90
+        height: 90
+========
+        width: 256
+        height: 256
+>>>>>>>> master:Assets/UI/PanelDisabled.png.meta
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-<<<<<<<< HEAD:Assets/UI/DialogSystem/backButton.png.meta
-      spriteID: 95d5cb9c70ba35700800000000000000
-      internalID: 527953631270165849
+<<<<<<<< HEAD:Assets/Game/Merge/Базы Данных.png.meta
+      spriteID: 49e89986834ae23e0800000000000000
+      internalID: -2076541815991202156
 ========
-      spriteID: 717ac21931376dac0800000000000000
-      internalID: -3830747905154832617
->>>>>>>> master:Assets/UI/Magolego/DownPanel.png.meta
+      spriteID: 8f6e348efb17aeba0800000000000000
+      internalID: -6058905279624124680
+>>>>>>>> master:Assets/UI/PanelDisabled.png.meta
       vertices: []
       indices: 
       edges: []
@@ -178,7 +148,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f6abdc02b2c41c24ab0a509a356f0a2b
+    spriteID: 947df54a23d4c8b40b7de4d8dd271016
     internalID: 0
     vertices: []
     indices: 
@@ -188,11 +158,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-<<<<<<<< HEAD:Assets/UI/DialogSystem/backButton.png.meta
-      backButton_0: 527953631270165849
+<<<<<<<< HEAD:Assets/Game/Merge/Базы Данных.png.meta
+      image 3_0: -2076541815991202156
 ========
-      DownPanel_0: -3830747905154832617
->>>>>>>> master:Assets/UI/Magolego/DownPanel.png.meta
+      PanelDisabled_0: -6058905279624124680
+>>>>>>>> master:Assets/UI/PanelDisabled.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MagistracyGame.Core;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,7 +11,10 @@ namespace MagistracyGame.FillWords
     {
         #region Fields and Properties
 
-        [SerializeField] private GameObject _wordsContainer;
+        [SerializeField] private GameObject _startPanel;
+        [SerializeField] private GameObject _winPanel;
+        [SerializeField] private Transform _wordsContainer;
+        [SerializeField] private Word _wordPrefab;
 
         private Tile _startTile;
         private bool _isDragging;
@@ -21,7 +23,7 @@ namespace MagistracyGame.FillWords
         private readonly HashSet<string> _foundWords = new();
         private List<Tile> _selectedTiles = new();
         private readonly List<Tile> _permanentSelection = new();
-        private TextMeshProUGUI[] _wordsToGuess;
+        private List<Word> _wordsToGuess;
         private Row[] _rows;
 
         private readonly string[] _boardLetters =
@@ -37,18 +39,18 @@ namespace MagistracyGame.FillWords
 
         private readonly string[] _targetWords =
         {
-            "НЕЙРОСЕТЬ", "ПЛЮС", "СИНУС", "ДРОБЬ", "ЛОГАРИФМ", "МАТРИЦА", "ВЕКТОР"
+            "МАТРИЦА", "НЕЙРОСЕТЬ", "ВЕКТОР", "СИНУС", "ПЛЮС", "ДРОБЬ", "ЛОГАРИФМ"
         };
 
         private readonly Color[] _selectionColors =
         {
-            new(0f, 0f, 1f), // Синий (0 слов)
-            new(1f, 1f, 0f), // Желтый (1 слово)
-            new(1f, 0f, 0f), // Красный (2 слова)
-            new(0.5f, 0.5f, 0.5f), // Серый (3 слова)
-            new(1f, 0.5f, 0f), // Оранжевый (4 слова)
-            new(0.5f, 0f, 0.5f), // Фиолетовый (5 слов)
-            new(0f, 1f, 0f) // Зеленый (6 слов)
+            new(0.988f, 0.424f, 0.729f), // #FC6CBA
+            new(0.875f, 0.161f, 0.318f), // #DF2951
+            new(1.0f, 0.427f, 0.0f), // #FF6D00
+            new(0.176f, 0.757f, 0.176f), // #2DC12D
+            new(0.024f, 0.702f, 0.953f), // #06B3F3
+            new(0.016f, 0.314f, 0.733f), // #0450BB
+            new(0.455f, 0.259f, 0.89f) // #7442E3
         };
 
         private bool IsGameComplete => _foundWords.Count == _targetWords.Length;
@@ -58,10 +60,35 @@ namespace MagistracyGame.FillWords
         private void Awake()
         {
             _rows = GetComponentsInChildren<Row>();
-            _wordsToGuess = _wordsContainer.GetComponentsInChildren<TextMeshProUGUI>();
+            _wordsToGuess = new List<Word>();
+
+            foreach (Transform child in _wordsContainer) Destroy(child.gameObject);
+
+            foreach (string word in _targetWords)
+            {
+                var instance = Instantiate(_wordPrefab, _wordsContainer);
+                instance.SetWord(word);
+                _wordsToGuess.Add(instance);
+            }
         }
 
-        private void Start() => InitializeBoardLetters();
+        private void Start()
+        {
+            InitializeBoardLetters();
+            ShowStartPanel();
+        }
+
+        private void ShowStartPanel()
+        {
+            _startPanel.SetActive(true);
+            IsGameFinished = true;
+        }
+
+        public void StartGame()
+        {
+            _startPanel.SetActive(false);
+            IsGameFinished = false;
+        }
 
         private void InitializeBoardLetters()
         {
@@ -217,11 +244,10 @@ namespace MagistracyGame.FillWords
 
         private void StrikeThroughWord(string word)
         {
-            foreach (var wordText in _wordsToGuess)
-                if (string.Equals(wordText.text, word, StringComparison.CurrentCultureIgnoreCase))
+            for (int i = 0; i < _targetWords.Length; i++)
+                if (string.Equals(word, _targetWords[i]))
                 {
-                    wordText.text = $"<s>{wordText.text}</s>";
-                    wordText.color = Color.gray;
+                    _wordsToGuess[i].MarkAsFound();
                     break;
                 }
         }
@@ -234,6 +260,8 @@ namespace MagistracyGame.FillWords
         {
             IsGameFinished = true;
             OnGameFinished?.Invoke();
+
+            _winPanel.SetActive(true);
         }
     }
 }
