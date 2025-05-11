@@ -4,45 +4,33 @@ using UnityEngine.UI;
 
 namespace MagistracyGame.FillWords
 {
-	public class WordToGuessController : MonoBehaviour
-	{
-		[SerializeField] private Image _backgroundImage;
-		[SerializeField] private TextMeshProUGUI _wordText;
-		[SerializeField] private Sprite _defaultSprite;
-		[SerializeField] private Sprite _foundSprite;
+    [RequireComponent(typeof(Image))]
+    public class Word : MonoBehaviour
+    {
+        [SerializeField] private Sprite _foundSprite;
 
-		private bool _isFound;
+        private Image _backgroundImage;
+        private TextMeshProUGUI _wordText;
+        private bool _isFound;
 
-		private void Awake()
-		{
-			if (_backgroundImage == null) _backgroundImage = GetComponent<Image>();
-			if (_wordText == null) _wordText = GetComponentInChildren<TextMeshProUGUI>();
-			SetSprite(_defaultSprite);
-		}
+        private void Awake()
+        {
+            _backgroundImage = GetComponent<Image>();
+            _wordText = GetComponentInChildren<TextMeshProUGUI>();
+        }
 
-		private void SetSprite(Sprite sprite)
-		{
-			if (_backgroundImage != null && sprite != null)
-			{
-				_backgroundImage.sprite = sprite;
-			}
-		}
+        public void SetWord(string word)
+        {
+            _wordText.text = word.ToUpper();
+        }
 
-		public void SetWord(string word)
-		{
-			_wordText.text = word.ToUpper();
-		}
+        public void MarkAsFound()
+        {
+            if (_isFound) return;
 
-		public void MarkAsFound()
-		{
-			if (!_isFound)
-			{
-				_isFound = true;
-				SetSprite(_foundSprite);
-				_wordText.color = Color.gray;
-			}
-		}
-
-		
-	}
+            _isFound = true;
+            _backgroundImage.sprite = _foundSprite;
+            _wordText.color = Color.gray;
+        }
+    }
 }

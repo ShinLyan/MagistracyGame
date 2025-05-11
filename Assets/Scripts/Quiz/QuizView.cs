@@ -13,23 +13,20 @@ namespace MagistracyGame.Quiz
 
         [Header("Guide")]
         [SerializeField] private Button _guidePanelButton;
+
         [SerializeField] private TextMeshProUGUI _guideText;
 
         [Header("Outline Colors")]
         [SerializeField] private Color _correctColor = new(0, 1, 0, 1);
+
         [SerializeField] private Color _wrongColor = new(1, 0, 0, 1);
         [SerializeField] private Color _defaultOutline = new(0, 0, 0, 0);
-
-        [Header("Background Colors")]
-        [SerializeField] private Color _correctBackgroundColor = new(0.8f, 1, 0.75f, 1);
-        [SerializeField] private Color _wrongBackgroundColor = new(1, 0.75f, 0.75f, 1);
-        [SerializeField] private Color _defaultBackgroundColor = new(1, 1, 1, 1);
 
         private void Start() => HideGuidePanel();
 
         public void UpdateQuestionCounter(int current, int total)
         {
-            _questionCounterText.text = $"Вопрос: {current} из {total}";
+            _questionCounterText.text = $"{current} / {total}";
         }
 
         public void ShowQuestion(QuizQuestion question, Action<int> onAnswerSelected)
@@ -41,7 +38,6 @@ namespace MagistracyGame.Quiz
                 button.interactable = true;
                 SetButtonText(button, question.Answers[i]);
                 SetOutline(button, _defaultOutline);
-                SetButtonBackground(button, _defaultBackgroundColor);
 
                 int index = i;
                 button.onClick.RemoveAllListeners();
@@ -52,15 +48,10 @@ namespace MagistracyGame.Quiz
         public void ShowAnswerFeedback(int selectedIndex, int correctIndex, bool isCorrect)
         {
             DisableAnswerButtons();
-
             SetOutline(_answerButtons[selectedIndex], isCorrect ? _correctColor : _wrongColor);
-            SetButtonBackground(_answerButtons[selectedIndex], isCorrect ? _correctBackgroundColor : _wrongBackgroundColor);
 
             if (!isCorrect)
-            {
                 SetOutline(_answerButtons[correctIndex], _correctColor);
-                SetButtonBackground(_answerButtons[correctIndex], _correctBackgroundColor);
-            }
         }
 
         private void DisableAnswerButtons()
@@ -73,15 +64,6 @@ namespace MagistracyGame.Quiz
             if (!button.TryGetComponent<Outline>(out var outline)) return;
 
             outline.effectColor = color;
-            outline.effectDistance = color.a > 0 ? new Vector2(5, 5) : Vector2.zero;
-        }
-
-        private static void SetButtonBackground(Button button, Color color)
-        {
-            if (button.TryGetComponent<Image>(out var image))
-            {
-                image.color = color;
-            }
         }
 
         private static void SetButtonText(Button button, string text)

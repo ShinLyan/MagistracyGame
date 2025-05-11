@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MagistracyGame.Core;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,14 +9,12 @@ namespace MagistracyGame.FillWords
 {
     public class FillWords : MonoBehaviour, IGame
     {
-        
         #region Fields and Properties
 
-        [SerializeField] private GameObject _winPanel;
-        [SerializeField] private UnityEngine.UI.Button _nextLevelButton;
         [SerializeField] private GameObject _startPanel;
-        [SerializeField] private GameObject _wordsContainer;
-        [SerializeField] private GameObject _dimOverlay;
+        [SerializeField] private GameObject _winPanel;
+        [SerializeField] private Transform _wordsContainer;
+        [SerializeField] private Word _wordPrefab;
 
         private Tile _startTile;
         private bool _isDragging;
@@ -26,7 +23,7 @@ namespace MagistracyGame.FillWords
         private readonly HashSet<string> _foundWords = new();
         private List<Tile> _selectedTiles = new();
         private readonly List<Tile> _permanentSelection = new();
-        private TextMeshProUGUI[] _wordsToGuess;
+        private List<Word> _wordsToGuess;
         private Row[] _rows;
 
         private readonly string[] _boardLetters =
@@ -42,18 +39,18 @@ namespace MagistracyGame.FillWords
 
         private readonly string[] _targetWords =
         {
-            "НЕЙРОСЕТЬ", "ПЛЮС", "СИНУС", "ДРОБЬ", "ЛОГАРИФМ", "МАТРИЦА", "ВЕКТОР"
+            "МАТРИЦА", "НЕЙРОСЕТЬ", "ВЕКТОР", "СИНУС", "ПЛЮС", "ДРОБЬ", "ЛОГАРИФМ"
         };
 
         private readonly Color[] _selectionColors =
         {
-            new Color(0.988f, 0.424f, 0.729f), // #FC6CBA
-            new Color(0.875f, 0.161f, 0.318f), // #DF2951
-            new Color(1.0f, 0.427f, 0.0f),     // #FF6D00
-            new Color(0.176f, 0.757f, 0.176f), // #2DC12D
-            new Color(0.024f, 0.702f, 0.953f), // #06B3F3
-            new Color(0.016f, 0.314f, 0.733f), // #0450BB
-            new Color(0.455f, 0.259f, 0.89f)   // #7442E3
+            new(0.988f, 0.424f, 0.729f), // #FC6CBA
+            new(0.875f, 0.161f, 0.318f), // #DF2951
+            new(1.0f, 0.427f, 0.0f), // #FF6D00
+            new(0.176f, 0.757f, 0.176f), // #2DC12D
+            new(0.024f, 0.702f, 0.953f), // #06B3F3
+            new(0.016f, 0.314f, 0.733f), // #0450BB
+            new(0.455f, 0.259f, 0.89f) // #7442E3
         };
 
         private bool IsGameComplete => _foundWords.Count == _targetWords.Length;
@@ -63,26 +60,15 @@ namespace MagistracyGame.FillWords
         private void Awake()
         {
             _rows = GetComponentsInChildren<Row>();
-            _wordsToGuess = FindObjectsOfType<TextMeshProUGUI>();
-            _nextLevelButton.onClick.AddListener(GoToNextLevel);
+            _wordsToGuess = new List<Word>();
 
-            List<TextMeshProUGUI> filteredWords = new List<TextMeshProUGUI>();
-            foreach (var text in _wordsToGuess)
-            {
-                if (text.GetComponentInParent<WordToGuessController>() != null)
-                {
-                    filteredWords.Add(text);
-                }
-            }
-            _wordsToGuess = filteredWords.ToArray();
+            foreach (Transform child in _wordsContainer) Destroy(child.gameObject);
 
-            for (int i = 0; i < _wordsToGuess.Length && i < _targetWords.Length; i++)
+            foreach (string word in _targetWords)
             {
-                WordToGuessController controller = _wordsToGuess[i].GetComponentInParent<WordToGuessController>();
-                if (controller != null)
-                {
-                    controller.SetWord(_targetWords[i]);
-                }
+                var instance = Instantiate(_wordPrefab, _wordsContainer);
+                instance.SetWord(word);
+                _wordsToGuess.Add(instance);
             }
         }
 
@@ -95,23 +81,13 @@ namespace MagistracyGame.FillWords
         private void ShowStartPanel()
         {
             _startPanel.SetActive(true);
-            _dimOverlay.SetActive(true);
             IsGameFinished = true;
         }
-        
+
         public void StartGame()
         {
             _startPanel.SetActive(false);
-            _dimOverlay.SetActive(false);
             IsGameFinished = false;
-        }
-        
-        private void GoToNextLevel()
-        {
-            _winPanel.SetActive(false);
-            _dimOverlay.SetActive(false);
-            _startPanel.SetActive(true);
-            _dimOverlay.SetActive(true);
         }
 
         private void InitializeBoardLetters()
@@ -268,18 +244,12 @@ namespace MagistracyGame.FillWords
 
         private void StrikeThroughWord(string word)
         {
-            foreach (var wordText in _wordsToGuess)
-            {
-                if (string.Equals(wordText.text, word, StringComparison.CurrentCultureIgnoreCase))
+            for (int i = 0; i < _targetWords.Length; i++)
+                if (string.Equals(word, _targetWords[i]))
                 {
-                    WordToGuessController controller = wordText.GetComponentInParent<WordToGuessController>();
-                    if (controller != null)
-                    {
-                        controller.MarkAsFound();
-                    }
+                    _wordsToGuess[i].MarkAsFound();
                     break;
                 }
-            }
         }
 
         public bool IsGameFinished { get; private set; }
@@ -290,9 +260,8 @@ namespace MagistracyGame.FillWords
         {
             IsGameFinished = true;
             OnGameFinished?.Invoke();
-            
+
             _winPanel.SetActive(true);
-            _dimOverlay.SetActive(true);
         }
     }
 }

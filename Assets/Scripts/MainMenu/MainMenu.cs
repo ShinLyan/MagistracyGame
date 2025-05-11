@@ -7,14 +7,14 @@ namespace MagistracyGame.MainMenu
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _returnButton;
-        [SerializeField] private DialogueStage _dialogueStage;
+
+        private DialogueStage _dialogueStage;
 
         private const string ProgramUrl = "https://www.hse.ru/ma/gamedev/";
 
-        private void Awake() => SetupButtons();
-
-        private void SetupButtons()
+        private void Awake()
         {
+            _dialogueStage = FindFirstObjectByType<DialogueStage>();
             _playButton.onClick.AddListener(StartGame);
             _returnButton.onClick.AddListener(ReturnToProgramPage);
         }
