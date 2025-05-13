@@ -1,10 +1,19 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Game/Merge/Математика.png.meta
 guid: d71e03af2344085478ea36c99bc83bd5
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 657193517335828509
     second: image 1_0
+========
+guid: bab411cc1c96ca940899668bb2016e98
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4861793323344200345
+    second: magoLegoBackground_0
+>>>>>>>> master:Assets/UI/Magolego/magoLegoBackground.png.meta
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+<<<<<<<< HEAD:Assets/Game/Merge/Математика.png.meta
       name: image 1_0
+========
+      name: magoLegoBackground_0
+>>>>>>>> master:Assets/UI/Magolego/magoLegoBackground.png.meta
       rect:
         serializedVersion: 2
         x: 0
         y: 0
+<<<<<<<< HEAD:Assets/Game/Merge/Математика.png.meta
         width: 96
         height: 96
+========
+        width: 1920
+        height: 1080
+>>>>>>>> master:Assets/UI/Magolego/magoLegoBackground.png.meta
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +133,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
+<<<<<<<< HEAD:Assets/Game/Merge/Математика.png.meta
       spriteID: d18dd75a502de1900800000000000000
       internalID: 657193517335828509
+========
+      spriteID: 9920c49c44f887340800000000000000
+      internalID: 4861793323344200345
+>>>>>>>> master:Assets/UI/Magolego/magoLegoBackground.png.meta
       vertices: []
       indices: 
       edges: []
@@ -135,7 +158,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+<<<<<<<< HEAD:Assets/Game/Merge/Математика.png.meta
       image 1_0: 657193517335828509
+========
+      magoLegoBackground_0: 4861793323344200345
+>>>>>>>> master:Assets/UI/Magolego/magoLegoBackground.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

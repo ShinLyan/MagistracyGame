@@ -15,7 +15,7 @@ namespace MagistracyGame.Quiz
         [SerializeField] private Button[] _answerButtons;
 
         [Header("Guide")]
-        [SerializeField] private Button _guidePanelButton;
+        [SerializeField] private Button _taskPanelButton;
 
         [SerializeField] private TextMeshProUGUI _guideText;
         [SerializeField] private Button _nextQuestionButton;
@@ -32,7 +32,7 @@ namespace MagistracyGame.Quiz
         [SerializeField] private Color _wrongBackgroundColor = new(1, 0.75f, 0.75f, 1);
         [SerializeField] private Color _defaultBackgroundColor = new(1, 1, 1, 1);
 
-        private void Awake() => _guidePanelButton.onClick.AddListener(HandleGuidePanelClick);
+        private void Awake() => _taskPanelButton.onClick.AddListener(HandleGuidePanelClick);
 
         private void Start() => HideGuidePanel();
 
@@ -106,19 +106,15 @@ namespace MagistracyGame.Quiz
 
         public void ShowGuidePanel(string text, Action onClick)
         {
-            _guidePanelButton.gameObject.SetActive(true);
+            _taskPanelButton.gameObject.SetActive(true);
             _guideText.text = text;
-
-            _nextQuestionButton.gameObject.SetActive(true);
             _nextQuestionButton.onClick.RemoveAllListeners();
             _nextQuestionButton.onClick.AddListener(() => { onClick?.Invoke(); });
         }
 
         public void HideGuidePanel()
         {
-            _guidePanelButton.gameObject.SetActive(false);
-
-            _nextQuestionButton.gameObject.SetActive(false);
+            _taskPanelButton.gameObject.SetActive(false);
             _nextQuestionButton.onClick.RemoveAllListeners();
         }
     }

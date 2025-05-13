@@ -9,11 +9,11 @@ public class DialogueStage : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _studentCardStage;
     [SerializeField] private GameObject _fillwords;
+    [SerializeField] private GameObject _magoLego;
     [SerializeField] private GameObject _firstQuiz;
     [SerializeField] private GameObject _mergeGame;
     [SerializeField] private GameObject _secondQuiz;
     [SerializeField] private GameObject _puzzle;
-    [SerializeField] private GameObject _magolegoChoice;
     [SerializeField] private GameObject _diplomStage;
 
     private int levelIndex;
@@ -33,7 +33,7 @@ public class DialogueStage : MonoBehaviour
             _mergeGame,
             _secondQuiz,
             _puzzle,
-            _magolegoChoice,
+            _magoLego,
             _diplomStage
         };
         foreach (var screen in screens) screen.SetActive(false);
@@ -69,7 +69,7 @@ public class DialogueStage : MonoBehaviour
             {
                 _dialogueManager.SwitchDialoguePanel(true);
                 _blackBackgroundGameField.SetActive(true);
-                _magolegoChoice.SetActive(false);
+                _magoLego.SetActive(false);
                 break;
             }
             case 4:
@@ -128,7 +128,7 @@ public class DialogueStage : MonoBehaviour
             {
                 _dialogueManager.SwitchDialoguePanel(false);
                 _blackBackgroundGameField.SetActive(false);
-                _magolegoChoice.SetActive(true);
+                _magoLego.SetActive(true);
                 break;
             }
             case 3:
