@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MagistracyGame.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MagistracyGame.Puzzle
 {
-    public class DiplomaPuzzle : MonoBehaviour
+    public class DiplomaPuzzle : MonoBehaviour, IGame
     {
         [SerializeField] private Transform coverPage;
         [SerializeField] private Transform secondHalf;
@@ -17,7 +19,6 @@ namespace MagistracyGame.Puzzle
         [SerializeField] private float _delayBeforeFlip = 0.5f;
         [SerializeField] private List<PuzzleSlot> _slots = new();
         [SerializeField] private List<PuzzlePiece> _pieces = new();
-        [SerializeField] private Button _continueButton;
         [SerializeField] private GameObject _frontSide;
         [SerializeField] private GameObject _backSide;
         [SerializeField] private GameObject _texts;
@@ -33,8 +34,6 @@ namespace MagistracyGame.Puzzle
 
         private void Start()
         {
-            _continueButton.gameObject.SetActive(false);
-
             HighlightCurrentSlot();
             LoadPlayerData();
 
@@ -138,7 +137,7 @@ namespace MagistracyGame.Puzzle
             var coverStartPosition = coverPage.localPosition;
             var halfStartPosition = secondHalf.localPosition;
             var coverEndPosition = new Vector3(0f, 0f, 0f);
-            var halfEndPosition = new Vector3(337f, 0f, 0f);
+            var halfEndPosition = new Vector3(675f, 0f, 0f);
             float flipTimer = 0f;
             bool swapped = false;
             while (flipTimer < flipDuration)
@@ -164,6 +163,21 @@ namespace MagistracyGame.Puzzle
             coverPage.localPosition = coverEndPosition;
 
             _isAnimating = false;
+            FinishGame();
         }
+
+        #region IGame
+
+        public bool IsGameFinished { get; private set; }
+
+        [field: SerializeField] public UnityEvent OnGameFinished { get; private set; }
+
+        public void FinishGame()
+        {
+            IsGameFinished = true;
+            OnGameFinished?.Invoke();
+        }
+
+        #endregion
     }
 }

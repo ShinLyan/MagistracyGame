@@ -21,16 +21,16 @@ namespace MagistracyGame.Quiz
         [SerializeField] private Button _nextQuestionButton;
 
         [Header("Outline Colors")]
-        [SerializeField] private Color _correctColor = new(0, 1, 0, 1);
+        [SerializeField] private Color _correctColor;
 
-        [SerializeField] private Color _wrongColor = new(1, 0, 0, 1);
-        [SerializeField] private Color _defaultOutline = new(0, 0, 0, 0);
+        [SerializeField] private Color _wrongColor;
+        [SerializeField] private Color _defaultOutline;
 
         [Header("Background Colors")]
-        [SerializeField] private Color _correctBackgroundColor = new(0.8f, 1, 0.75f, 1);
+        [SerializeField] private Color _correctBackgroundColor;
 
-        [SerializeField] private Color _wrongBackgroundColor = new(1, 0.75f, 0.75f, 1);
-        [SerializeField] private Color _defaultBackgroundColor = new(1, 1, 1, 1);
+        [SerializeField] private Color _wrongBackgroundColor;
+        [SerializeField] private Color _defaultBackgroundColor;
 
         private void Awake() => _taskPanelButton.onClick.AddListener(HandleGuidePanelClick);
 

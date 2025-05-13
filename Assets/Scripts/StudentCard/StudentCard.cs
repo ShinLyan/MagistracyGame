@@ -19,7 +19,7 @@ namespace MagistracyGame.StudentCard
         private void Awake()
         {
             _nameInputField.onValueChanged.AddListener(OnNameChanged);
-            _continueButton.Button.onClick.AddListener(OnClickContinue);
+            // _continueButton.Button.onClick.AddListener(OnClickContinue);
         }
 
         private void Start()
@@ -34,7 +34,7 @@ namespace MagistracyGame.StudentCard
             _continueButton.SetInteractable(!string.IsNullOrWhiteSpace(input));
         }
 
-        private void OnClickContinue()
+        public void OnClickContinue()
         {
             _continueButton.SetInteractable(false);
             _nameInputField.interactable = false;

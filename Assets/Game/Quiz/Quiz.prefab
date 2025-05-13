@@ -778,7 +778,7 @@ MonoBehaviour:
   _nextQuestionButton: {fileID: 5713720347527105917}
   _correctColor: {r: 0, g: 1, b: 0, a: 1}
   _wrongColor: {r: 1, g: 0, b: 0, a: 1}
-  _defaultOutline: {r: 1, g: 1, b: 1, a: 1}
+  _defaultOutline: {r: 0.92156863, g: 0.92156863, b: 0.92156863, a: 1}
   _correctBackgroundColor: {r: 0.8132075, g: 1, b: 0.8132075, a: 1}
   _wrongBackgroundColor: {r: 1, g: 0.72264147, b: 0.72264147, a: 1}
   _defaultBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1382,7 +1382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 132348561527241305, guid: 50c0ce6916b4eb446bd62c93725cb5a0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 186.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 132348561527241305, guid: 50c0ce6916b4eb446bd62c93725cb5a0, type: 3}
       propertyPath: m_SizeDelta.y
