@@ -25,6 +25,7 @@ namespace MagistracyGame.Merge
         [SerializeField] private Image _victoryIcon;
         [SerializeField] private TextMeshProUGUI _victoryTitle;
         [SerializeField] private TextMeshProUGUI _victoryDescription;
+        [SerializeField] private GameObject _startPanel;
 
         [Header("Icons")] [SerializeField] private Sprite _mathIcon;
         [SerializeField] private Sprite _physicsIcon;
@@ -63,8 +64,13 @@ namespace MagistracyGame.Merge
         {
             _victoryPanel.SetActive(false);
             UpdateAvailableElements();
+            ShowStartPanel();
         }
 
+        private void ShowStartPanel()
+        {
+            _startPanel.SetActive(true);
+        }
         void Update()
         {
             if (!_hasShownFinalText && _victoryPanel.activeSelf && (Input.GetKeyDown(KeyCode.Return) ||
@@ -191,8 +197,8 @@ namespace MagistracyGame.Merge
             }
 
             float xOffset = 0f;
-            float paddingX = 20f;
-            float paddingY = 20f;
+            float paddingX = 30f;
+            float paddingY = 30f;
 
             foreach (string element in _availableElements)
             {
@@ -201,6 +207,10 @@ namespace MagistracyGame.Merge
                 Image img = elementButton.GetComponent<Image>();
                 if (img != null)
                     img.sprite = _elementIcons[element];
+
+                TextMeshProUGUI text = elementButton.GetComponentInChildren<TextMeshProUGUI>();
+                if (text != null)
+                    text.text = element;
 
                 Button btn = elementButton.GetComponent<Button>();
                 if (btn != null)
@@ -211,9 +221,9 @@ namespace MagistracyGame.Merge
                 rect.anchorMax = new Vector2(0f, 1f);
                 rect.pivot = new Vector2(0f, 1f);
                 rect.anchoredPosition = new Vector2(paddingX + xOffset, -paddingY);
-                rect.sizeDelta = new Vector2(130, 130);
+                rect.sizeDelta = new Vector2(200, 200);
 
-                xOffset += 200f;
+                xOffset += 220f;
             }
         }
 
