@@ -4,12 +4,14 @@ using UnityEngine.Events;
 
 namespace MagistracyGame.Quiz
 {
+    [RequireComponent(typeof(QuizView), typeof(TextTyper))]
     public class Quiz : MonoBehaviour, IGame
     {
         [SerializeField] private QuizData _data;
-        [SerializeField] private QuizView _view;
-        [SerializeField] private TextTyper _guideTyper;
+        [SerializeField] private GameObject _startPanel;
 
+        private QuizView _view;
+        private TextTyper _textTyper;
         private int _questionIndex;
 
         private int QuestionIndex
@@ -29,9 +31,19 @@ namespace MagistracyGame.Quiz
 
         private QuizQuestion Question => _data.Questions[QuestionIndex];
 
-        private void Start() => ShowQuestion();
+        private void Awake()
+        {
+            _view = GetComponent<QuizView>();
+            _textTyper = GetComponent<TextTyper>();
+        }
 
-        private void ShowQuestion()
+        private void Start()
+        {
+            _startPanel.SetActive(true);
+            ShowNextQuestion();
+        }
+
+        private void ShowNextQuestion()
         {
             _view.ShowQuestion(Question, HandleAnswer);
             _view.UpdateQuestionCounter(QuestionIndex + 1, _data.Questions.Length);
@@ -46,14 +58,14 @@ namespace MagistracyGame.Quiz
 
             string guideText = isCorrect ? Question.GuideTextCorrect : Question.GuideTextIncorrect;
             _view.ShowGuidePanel(guideText, OnNextQuestionClicked);
-            _guideTyper.TypeText(guideText, 10f);
+            _textTyper.TypeText(guideText, 10f);
         }
 
         private void OnNextQuestionClicked()
         {
             _view.HideGuidePanel();
             QuestionIndex++;
-            ShowQuestion();
+            ShowNextQuestion();
         }
 
         #region IGame

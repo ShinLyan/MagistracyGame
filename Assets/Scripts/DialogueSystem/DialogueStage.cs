@@ -9,8 +9,8 @@ public class DialogueStage : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _studentCardStage;
     [SerializeField] private GameObject _fillwords;
-    [SerializeField] private GameObject _firstQuiz;
     [SerializeField] private GameObject _magoLego;
+    [SerializeField] private GameObject _firstQuiz;
     [SerializeField] private GameObject _mergeGame;
     [SerializeField] private GameObject _secondQuiz;
     [SerializeField] private GameObject _puzzle;

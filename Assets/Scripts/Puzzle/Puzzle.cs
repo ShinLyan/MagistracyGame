@@ -14,7 +14,6 @@ namespace MagistracyGame.Puzzle
         [SerializeField] private Transform secondHalf;
         [SerializeField] private float _vibrationIntensity = 10f;
         [SerializeField] private float _fadeDuration = 1f;
-        [SerializeField] private float _flipDuration = 1f;
         [SerializeField] private float _delayBeforeFlip = 0.5f;
         [SerializeField] private List<PuzzleSlot> _slots = new();
         [SerializeField] private List<PuzzlePiece> _pieces = new();
