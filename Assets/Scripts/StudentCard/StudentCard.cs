@@ -14,7 +14,11 @@ namespace MagistracyGame.StudentCard
         [SerializeField] private RectTransform _studentCard;
         [SerializeField] private TMP_Text _dateText;
         [SerializeField] private TMP_Text _wordCountText;
+        [SerializeField] private GameObject _errorText;
         [SerializeField] private UIButton _continueButton;
+        [SerializeField] private NicknameFilter _nicknameFilter;
+        [SerializeField] private Sprite _grayInput;
+        [SerializeField] private Sprite _redInput;
 
         private void Awake()
         {
@@ -36,6 +40,21 @@ namespace MagistracyGame.StudentCard
 
         public void OnClickContinue()
         {
+            string nickname = _nameInputField.text;
+
+            if (!_nicknameFilter.IsNicknameClean(nickname))
+            {
+                _nameInputField.GetComponent<Image>().sprite = _redInput;
+                _nameInputField.text = "";
+                _errorText.SetActive(true);
+                if (_nameInputField.placeholder is TMP_Text placeholder)
+                {
+                    placeholder.text = "Неприемлимое имя";
+                }
+                return;
+            }
+            _nameInputField.GetComponent<Image>().sprite = _grayInput;
+            _errorText.SetActive(false);
             _continueButton.SetInteractable(false);
             _nameInputField.interactable = false;
             _nameInputField.DeactivateInputField();

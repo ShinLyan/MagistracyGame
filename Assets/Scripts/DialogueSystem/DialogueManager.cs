@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueDialogue()
     {
+        StopAllCoroutines();
         StartCoroutine(WriteSentence(_dialogue.Nodes[_phraseIndex].Text));
     }
 
@@ -38,7 +39,6 @@ public class DialogueManager : MonoBehaviour
     public void OnClickBackButton()
     {
         if (_phraseIndex == 0 || _dialogue.Nodes[_phraseIndex - 1].IsEnd) return;
-
         StopAllCoroutines();
         _phraseIndex -= 2;
         NextSentence();
@@ -53,6 +53,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            print(2);
             StopAllCoroutines();
             _dialoguePanelText.text = _dialogue.Nodes[_phraseIndex].Text;
         }
