@@ -150,8 +150,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_0"
+      name: orangeIconsWithOutline0
       rect:
         serializedVersion: 2
         x: 0
@@ -159,7 +158,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -173,8 +172,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_1"
+      name: orangeIconsWithOutline1
       rect:
         serializedVersion: 2
         x: 363
@@ -182,7 +180,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -196,8 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_2"
+      name: orangeIconsWithOutline2
       rect:
         serializedVersion: 2
         x: 726
@@ -205,7 +202,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -219,8 +216,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_3"
+      name: orangeIconsWithOutline3
       rect:
         serializedVersion: 2
         x: 1089
@@ -228,7 +224,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -242,8 +238,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_4"
+      name: orangeIconsWithOutline4
       rect:
         serializedVersion: 2
         x: 1452
@@ -251,7 +246,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -265,8 +260,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_5"
+      name: orangeIconsWithOutline5
       rect:
         serializedVersion: 2
         x: 0
@@ -274,7 +268,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -288,8 +282,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_6"
+      name: orangeIconsWithOutline6
       rect:
         serializedVersion: 2
         x: 363
@@ -297,7 +290,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -311,8 +304,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_7"
+      name: orangeIconsWithOutline7
       rect:
         serializedVersion: 2
         x: 726
@@ -320,7 +312,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -334,8 +326,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_8"
+      name: orangeIconsWithOutline8
       rect:
         serializedVersion: 2
         x: 1089
@@ -343,7 +334,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -357,8 +348,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435
-        \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_9"
+      name: orangeIconsWithOutline9
       rect:
         serializedVersion: 2
         x: 1452
@@ -366,7 +356,7 @@ TextureImporter:
         width: 280
         height: 280
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -393,16 +383,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_0": -1737255868
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_1": 1237626825
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_2": 871977699
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_3": 1061355353
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_4": 514411562
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_5": 1835460811
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_6": -1467523367
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_7": -940188508
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_8": 1695390743
-      "\u0438\u043A\u043E\u043D\u043A\u0438 \u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u0441 \u043E\u0431\u0432\u043E\u0434\u043A\u043E\u0439_9": -1132143400
+      orangeIconsWithOutline0: -1737255868
+      orangeIconsWithOutline1: 1237626825
+      orangeIconsWithOutline2: 871977699
+      orangeIconsWithOutline3: 1061355353
+      orangeIconsWithOutline4: 514411562
+      orangeIconsWithOutline5: 1835460811
+      orangeIconsWithOutline6: -1467523367
+      orangeIconsWithOutline7: -940188508
+      orangeIconsWithOutline8: 1695390743
+      orangeIconsWithOutline9: -1132143400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
