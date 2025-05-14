@@ -53,7 +53,6 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            print(2);
             StopAllCoroutines();
             _dialoguePanelText.text = _dialogue.Nodes[_phraseIndex].Text;
         }

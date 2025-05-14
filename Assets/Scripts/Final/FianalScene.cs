@@ -16,18 +16,21 @@ public class FianalScene : MonoBehaviour
     [SerializeField] private Button _diplomaButton;
     [SerializeField] private Button _webButton;
     [SerializeField] private Camera _diplomaCamera;
+    [SerializeField] private TMP_Text _practiceText;
+    [SerializeField] private TMP_Text _magoLegoText;
+    [SerializeField] private TMP_Text _nameText;
 
 
     private const string MagoLegoUrl = "https://electives.hse.ru/mg_oi/";
 
     private string screenshotPath;
 
-    void Awake()
+    void Start()
     {
         _dateText.text = DateTime.Now.ToString("dd.MM.yyyy");
-
+        LoadPlayerData();
         _webButton.onClick.AddListener(() => Application.OpenURL(MagoLegoUrl));
-        _diplomaButton.onClick.AddListener(() => StartCoroutine(CaptureAndSavePDF()));
+        /*_diplomaButton.onClick.AddListener(() => StartCoroutine(CaptureAndSavePDF()));*/
         string diplomaDirectory = Path.Combine(Application.persistentDataPath, "Diplomas");
         if (!Directory.Exists(diplomaDirectory))
         {
@@ -37,17 +40,20 @@ public class FianalScene : MonoBehaviour
         screenshotPath = Path.Combine(diplomaDirectory, "DiplomaScreenshot.png");
     }
 
-    
+    private void LoadPlayerData()
+    {
+        _nameText.text = PlayerPrefs.GetString("PlayerNickname");
+        _practiceText.text = PlayerPrefs.GetString("CompletedPractice");
+        _magoLegoText.text = PlayerPrefs.GetString("SelectedMagoLego");
+    }
 
     IEnumerator CaptureAndSavePDF()
     {
         yield return new WaitForEndOfFrame();
 
-        // Сохранение скриншота
         RenderTexture renderTexture = new RenderTexture(1024, 1024, 24);
         _diplomaCamera.targetTexture = renderTexture;
 
-        // Захват изображения
         Texture2D screenshot = new Texture2D(1024, 1024, TextureFormat.RGB24, false);
         _diplomaCamera.Render();
         RenderTexture.active = renderTexture;
@@ -56,7 +62,6 @@ public class FianalScene : MonoBehaviour
         byte[] bytes = screenshot.EncodeToPNG();
         File.WriteAllBytes(screenshotPath, bytes);
 
-        // Очистка
         _diplomaCamera.targetTexture = null;
         RenderTexture.active = null;
         Destroy(renderTexture);

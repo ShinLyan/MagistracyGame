@@ -19,7 +19,6 @@ public class MagoLegoMenu : MonoBehaviour
         _magoLegoButton.onClick.AddListener(() => Application.OpenURL(MagoLegoUrl));
 
         _continueButton.interactable = false;
-        _continueButton.onClick.AddListener(OnClickContinue);
     }
 
     private void Start()
@@ -50,16 +49,15 @@ public class MagoLegoMenu : MonoBehaviour
             }
 
         selectedIndex = index;
-
+        SaveChoice();
         _continueButton.interactable = true;
         _continueButton.GetComponentInChildren<TMP_Text>().color = Color.white;
         _continueButton.GetComponent<UIButton>().SetInteractable(true);
     }
 
-    private void OnClickContinue()
+    private void SaveChoice()
     {
-        PlayerPrefs.SetString("SelectedMagoLego",
-            _options[selectedIndex].transform.Find("Course").GetComponent<TMP_Text>().text);
-        PlayerPrefs.Save();
+        PlayerPrefs.SetString("SelectedMagoLego", _options[selectedIndex].transform.Find("Course").GetComponent<TMP_Text>().text);
+        PlayerPrefs.Save();        
     }
 }

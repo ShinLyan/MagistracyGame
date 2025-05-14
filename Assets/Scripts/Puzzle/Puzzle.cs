@@ -21,7 +21,6 @@ namespace MagistracyGame.Puzzle
         [SerializeField] private List<PuzzlePiece> _pieces = new();
         [SerializeField] private GameObject _frontSide;
         [SerializeField] private GameObject _backSide;
-        [SerializeField] private GameObject _texts;
         [SerializeField] private GameObject _piecesBar;
         [SerializeField] private Image _diplomaImage;
         [SerializeField] private TMP_Text _nameText;

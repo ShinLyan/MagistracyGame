@@ -220,6 +220,10 @@ namespace MagistracyGame.Merge
 
         IEnumerator ShowVictoryScreen(string finalElement)
         {
+            /*PlayerPrefs.SetString("CompletedPractice", Выбранная практика);
+            PlayerPrefs.Save();*/
+
+
             const float fadeDuration = 1f;
             float elapsed = 0f;
             while (elapsed < fadeDuration)
