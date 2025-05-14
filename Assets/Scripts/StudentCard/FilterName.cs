@@ -30,15 +30,15 @@ public class NicknameFilter : MonoBehaviour
         { 'ф', new List<char> { 'f' } },
         { 'х', new List<char> { 'x', 'h' } },
         { 'ц', new List<char> { 'c' } },
-        { 'ч', new List<char> { } },
-        { 'ш', new List<char> { } },
-        { 'щ', new List<char> { } },
+        { 'ч', new List<char>() },
+        { 'ш', new List<char>() },
+        { 'щ', new List<char>() },
         { 'ь', new List<char> { 'b' } },
-        { 'ы', new List<char> { } },
-        { 'ъ', new List<char> { } },
+        { 'ы', new List<char>() },
+        { 'ъ', new List<char>() },
         { 'э', new List<char> { 'e' } },
-        { 'ю', new List<char> { } },
-        { 'я', new List<char> { } }
+        { 'ю', new List<char>() },
+        { 'я', new List<char>() }
     };
 
     private readonly List<string> bannedWords = new();
@@ -51,18 +51,13 @@ public class NicknameFilter : MonoBehaviour
     private void LoadBannedWords()
     {
         var wordFile = Resources.Load<TextAsset>("banned_words");
-        if (wordFile != null)
-        {
-            string[] lines = wordFile.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines) bannedWords.Add(line.Trim().ToLower());
-        }
-        else
-        {
-            Debug.LogError("�� ������� ��������� ���� banned_words.txt �� Resources.");
-        }
+        if (!wordFile) return;
+
+        string[] lines = wordFile.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (string line in lines) bannedWords.Add(line.Trim().ToLower());
     }
 
-    public string Normalize(string input)
+    private string Normalize(string input)
     {
         input = input.ToLower().Replace(" ", "");
         string result = "";
@@ -85,7 +80,7 @@ public class NicknameFilter : MonoBehaviour
         return result;
     }
 
-    public int LevenshteinDistance(string a, string b)
+    private static int LevenshteinDistance(string a, string b)
     {
         int[,] dp = new int[a.Length + 1, b.Length + 1];
 
@@ -112,11 +107,7 @@ public class NicknameFilter : MonoBehaviour
             for (int i = 0; i <= normalized.Length - word.Length; i++)
             {
                 string fragment = normalized.Substring(i, word.Length);
-                if (LevenshteinDistance(fragment, word) <= word.Length * 0.25)
-                {
-                    Debug.Log($"���������� ����������� �����: {word} � ����: {fragment}");
-                    return false;
-                }
+                if (LevenshteinDistance(fragment, word) <= word.Length * 0.25) return false;
             }
 
         return true;
