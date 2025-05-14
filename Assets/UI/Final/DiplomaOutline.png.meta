@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6b956298881bdf143b09bff0188d6546
+guid: 2619927adca83674b871468ea6c78962
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8230488904728474184
-    second: plus_0
+      213: 8256632173958344953
+    second: DiplomaOutline_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,20 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plus_0
+      name: DiplomaOutline_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 45
-        height: 46
+        x: 9
+        y: 9
+        width: 960
+        height: 683
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 84272264d02983270800000000000000
-      internalID: 8230488904728474184
+      spriteID: 9f039d97733759270800000000000000
+      internalID: 8256632173958344953
       vertices: []
       indices: 
       edges: []
@@ -138,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ab90baa854ed0e04cb88e03107392419
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      plus_0: 8230488904728474184
+      DiplomaOutline_0: 8256632173958344953
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
