@@ -202,6 +202,7 @@ namespace MagistracyGame.Merge
                 yield return null;
             }
 
+            PlayerPrefs.SetString("CompletedPractice", finalElement);
             FinishGame();
         }
 

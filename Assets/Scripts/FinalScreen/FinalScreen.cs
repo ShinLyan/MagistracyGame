@@ -9,12 +9,15 @@ namespace MagistracyGame.FinalScreen
 {
     public class FinalScreen : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _dateText;
         [SerializeField] private Button _diplomaButton;
         [SerializeField] private Button _webButton;
         [SerializeField] private Camera _diplomaCamera;
+        [SerializeField] private TMP_Text _nameText;
+        [SerializeField] private TMP_Text _practiceText;
+        [SerializeField] private TMP_Text _magoLegoText;
+        [SerializeField] private TMP_Text _dateText;
 
-        private const string MagoLegoUrl = "https://electives.hse.ru/mg_oi/";
+        private const string ProgramUrl = "https://www.hse.ru/ma/gamedev/";
 
         private string _screenshotPath;
 
@@ -22,12 +25,25 @@ namespace MagistracyGame.FinalScreen
         {
             _dateText.text = DateTime.Now.ToString("dd.MM.yyyy");
 
-            _webButton.onClick.AddListener(() => Application.OpenURL(MagoLegoUrl));
+            _webButton.onClick.AddListener(() => Application.OpenURL(ProgramUrl));
             _diplomaButton.onClick.AddListener(() => StartCoroutine(CaptureAndSavePDF()));
+
+            LoadPlayerData();
+        }
+
+        private void Start()
+        {
             string diplomaDirectory = Path.Combine(Application.persistentDataPath, "Diplomas");
             if (!Directory.Exists(diplomaDirectory)) Directory.CreateDirectory(diplomaDirectory);
 
             _screenshotPath = Path.Combine(diplomaDirectory, "DiplomaScreenshot.png");
+        }
+
+        private void LoadPlayerData()
+        {
+            _nameText.text = PlayerPrefs.GetString("PlayerNickname");
+            _practiceText.text = PlayerPrefs.GetString("CompletedPractice");
+            _magoLegoText.text = PlayerPrefs.GetString("SelectedMagoLego");
         }
 
         private IEnumerator CaptureAndSavePDF()
