@@ -19,6 +19,7 @@ namespace MagistracyGame.FinalScreen
         private const string ProgramUrl = "https://www.hse.ru/ma/gamedev/";
         [SerializeField] private RectTransform _targetObject;
         private string _screenshotPath;
+        private FileSaver fileSaver;
 
         private void Awake()
         {
@@ -32,10 +33,7 @@ namespace MagistracyGame.FinalScreen
 
         private void Start()
         {
-            string diplomaDirectory = Path.Combine(Application.persistentDataPath, "Diplomas");
-            if (!Directory.Exists(diplomaDirectory)) Directory.CreateDirectory(diplomaDirectory);
-
-            _screenshotPath = Path.Combine(diplomaDirectory, "DiplomaScreenshot.png");
+            fileSaver = gameObject.AddComponent<FileSaver>();
         }
 
         private void LoadPlayerData()
@@ -62,10 +60,8 @@ namespace MagistracyGame.FinalScreen
             screenshot.Apply();
 
             byte[] bytes = screenshot.EncodeToPNG();
-            File.WriteAllBytes(_screenshotPath, bytes);
 
-            Debug.Log("Screenshot saved to " + _screenshotPath);
+            fileSaver.SaveFile(bytes, "Diploma.png");
         }
     }
-    
 }
