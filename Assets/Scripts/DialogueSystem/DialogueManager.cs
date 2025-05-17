@@ -47,9 +47,16 @@ public class DialogueManager : MonoBehaviour
     public void OnClickDialogue()
     {
         if (_dialoguePanelText.text == _dialogue.Nodes[_phraseIndex].Text)
+
         {
-            if (_dialogue.Nodes[_phraseIndex].IsEnd) _dialogueStage.EndDialogue();
+            if (_dialogue.Nodes[_phraseIndex].IsEnd)
+            {
+                _dialogueStage.EndDialogue();
+                _phraseIndex++;
+                return;
+            }
             NextSentence();
+         
         }
         else
         {

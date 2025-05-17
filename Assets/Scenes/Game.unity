@@ -19677,6 +19677,14 @@ MonoBehaviour:
   _secondQuiz: {fileID: 69521731}
   _puzzle: {fileID: 1312139544}
   _diplomStage: {fileID: 193944436}
+  _characterImage: {fileID: 162198719}
+  _dialogueText: {fileID: 2088073797}
+  _stages: []
+  animationDuration: 0.5
+  characterStartPos: {x: 570, y: 0}
+  textStartPos: {x: -1350, y: 50}
+  characterEndPos: {x: -80, y: 0}
+  textEndPos: {x: 80, y: 50}
 --- !u!4 &1757825849
 Transform:
   m_ObjectHideFlags: 0
