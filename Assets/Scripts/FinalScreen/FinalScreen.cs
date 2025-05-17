@@ -11,14 +11,13 @@ namespace MagistracyGame.FinalScreen
     {
         [SerializeField] private Button _diplomaButton;
         [SerializeField] private Button _webButton;
-        [SerializeField] private Camera _diplomaCamera;
         [SerializeField] private TMP_Text _nameText;
         [SerializeField] private TMP_Text _practiceText;
         [SerializeField] private TMP_Text _magoLegoText;
         [SerializeField] private TMP_Text _dateText;
 
         private const string ProgramUrl = "https://www.hse.ru/ma/gamedev/";
-
+        [SerializeField] private RectTransform _targetObject;
         private string _screenshotPath;
 
         private void Awake()
@@ -50,23 +49,23 @@ namespace MagistracyGame.FinalScreen
         {
             yield return new WaitForEndOfFrame();
 
-            var renderTexture = new RenderTexture(1024, 1024, 24);
-            _diplomaCamera.targetTexture = renderTexture;
+            Vector2 size = _targetObject.rect.size;
+            Vector2 pivotOffset = new Vector2(size.x * _targetObject.pivot.x, size.y * _targetObject.pivot.y);
+            
+            Vector2 worldBottomLeft = (Vector2)_targetObject.position - pivotOffset;
+            Vector2 screenBottomLeft = RectTransformUtility.WorldToScreenPoint(null, worldBottomLeft);
 
-            var screenshot = new Texture2D(1024, 1024, TextureFormat.RGB24, false);
-            _diplomaCamera.Render();
-            RenderTexture.active = renderTexture;
-            screenshot.ReadPixels(new Rect(0, 0, 1024, 1024), 0, 0);
+            Rect readRect = new Rect(screenBottomLeft.x, screenBottomLeft.y + 1, size.x, size.y - 1);
+
+            Texture2D screenshot = new Texture2D((int)size.x, (int)size.y - 1, TextureFormat.RGB24, false);
+            screenshot.ReadPixels(readRect, 0, 0);
             screenshot.Apply();
+
             byte[] bytes = screenshot.EncodeToPNG();
             File.WriteAllBytes(_screenshotPath, bytes);
 
-            _diplomaCamera.targetTexture = null;
-            RenderTexture.active = null;
-            Destroy(renderTexture);
-            Destroy(screenshot);
-
-            Debug.Log("ScreenshotPath: " + _screenshotPath);
+            Debug.Log("Screenshot saved to " + _screenshotPath);
         }
     }
+    
 }
