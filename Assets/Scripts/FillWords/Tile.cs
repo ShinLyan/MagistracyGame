@@ -7,7 +7,6 @@ namespace MagistracyGame.FillWords
     public class Tile : MonoBehaviour
     {
         private TextMeshProUGUI _text;
-        private readonly Color _originalColor = Color.white;
         private Image _image;
 
         public RectTransform RectTransform { get; private set; }
