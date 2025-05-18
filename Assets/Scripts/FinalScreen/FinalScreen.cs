@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,15 +10,15 @@ namespace MagistracyGame.FinalScreen
     {
         [SerializeField] private Button _diplomaButton;
         [SerializeField] private Button _webButton;
-        [SerializeField] private Camera _diplomaCamera;
         [SerializeField] private TMP_Text _nameText;
         [SerializeField] private TMP_Text _practiceText;
         [SerializeField] private TMP_Text _magoLegoText;
         [SerializeField] private TMP_Text _dateText;
+        [SerializeField] private RectTransform _targetObject;
 
         private const string ProgramUrl = "https://www.hse.ru/ma/gamedev/";
-
         private string _screenshotPath;
+        private FileSaver _fileSaver;
 
         private void Awake()
         {
@@ -33,10 +32,7 @@ namespace MagistracyGame.FinalScreen
 
         private void Start()
         {
-            string diplomaDirectory = Path.Combine(Application.persistentDataPath, "Diplomas");
-            if (!Directory.Exists(diplomaDirectory)) Directory.CreateDirectory(diplomaDirectory);
-
-            _screenshotPath = Path.Combine(diplomaDirectory, "DiplomaScreenshot.png");
+            _fileSaver = gameObject.AddComponent<FileSaver>();
         }
 
         private void LoadPlayerData()
@@ -50,23 +46,21 @@ namespace MagistracyGame.FinalScreen
         {
             yield return new WaitForEndOfFrame();
 
-            var renderTexture = new RenderTexture(1024, 1024, 24);
-            _diplomaCamera.targetTexture = renderTexture;
+            var size = _targetObject.rect.size;
+            var pivotOffset = new Vector2(size.x * _targetObject.pivot.x, size.y * _targetObject.pivot.y);
 
-            var screenshot = new Texture2D(1024, 1024, TextureFormat.RGB24, false);
-            _diplomaCamera.Render();
-            RenderTexture.active = renderTexture;
-            screenshot.ReadPixels(new Rect(0, 0, 1024, 1024), 0, 0);
+            var worldBottomLeft = (Vector2)_targetObject.position - pivotOffset;
+            var screenBottomLeft = RectTransformUtility.WorldToScreenPoint(null, worldBottomLeft);
+
+            var readRect = new Rect(screenBottomLeft.x, screenBottomLeft.y + 1, size.x, size.y - 1);
+
+            var screenshot = new Texture2D((int)size.x, (int)size.y - 1, TextureFormat.RGB24, false);
+            screenshot.ReadPixels(readRect, 0, 0);
             screenshot.Apply();
+
             byte[] bytes = screenshot.EncodeToPNG();
-            File.WriteAllBytes(_screenshotPath, bytes);
 
-            _diplomaCamera.targetTexture = null;
-            RenderTexture.active = null;
-            Destroy(renderTexture);
-            Destroy(screenshot);
-
-            Debug.Log("ScreenshotPath: " + _screenshotPath);
+            _fileSaver.SaveFile(bytes, "Diploma.png");
         }
     }
 }
