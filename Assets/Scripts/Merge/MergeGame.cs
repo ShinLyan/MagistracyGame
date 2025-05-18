@@ -54,14 +54,14 @@ namespace MagistracyGame.Merge
         private void Start()
         {
             _startPanel.SetActive(true);
-            _winPanel.gameObject.SetActive(false);
             UpdateAvailableElements();
         }
 
         private void InitializeData()
         {
             _mergeRules.Clear();
-            foreach (var rule in _gameData.MergeRules) _mergeRules.Add((rule.Element1, rule.Element2), rule.Result);
+            foreach (var rule in _gameData.MergeRules)
+                _mergeRules.Add((rule.Element1, rule.Element2), rule.Result);
 
             _elementIcons.Clear();
             foreach (var elementIcon in _gameData.ElementIcons)
