@@ -12,7 +12,6 @@ namespace MagistracyGame.FillWords
         #region Fields and Properties
 
         [SerializeField] private GameObject _startPanel;
-        [SerializeField] private GameObject _winPanel;
         [SerializeField] private Transform _wordsContainer;
         [SerializeField] private Word _wordPrefab;
 
@@ -61,9 +60,7 @@ namespace MagistracyGame.FillWords
         {
             _rows = GetComponentsInChildren<Row>();
             _wordsToGuess = new List<Word>();
-
             foreach (Transform child in _wordsContainer) Destroy(child.gameObject);
-
             foreach (string word in _targetWords)
             {
                 var instance = Instantiate(_wordPrefab, _wordsContainer);
@@ -75,26 +72,14 @@ namespace MagistracyGame.FillWords
         private void Start()
         {
             InitializeBoardLetters();
-            ShowStartPanel();
-        }
-
-        private void ShowStartPanel()
-        {
             _startPanel.SetActive(true);
-            IsGameFinished = true;
-        }
-
-        public void StartGame()
-        {
-            _startPanel.SetActive(false);
-            IsGameFinished = false;
         }
 
         private void InitializeBoardLetters()
         {
             for (int i = 0; i < _rows.Length; i++)
             {
-                var tiles = _rows[i]._tiles;
+                var tiles = _rows[i].Tiles;
                 string rowLetters = _boardLetters[i].ToUpper();
 
                 for (int j = 0; j < tiles.Length; j++)
@@ -104,7 +89,7 @@ namespace MagistracyGame.FillWords
 
         private void Update()
         {
-            if (IsGameFinished) return;
+            if (IsGameFinished || _startPanel.activeSelf) return;
 
             HandleInput();
         }
@@ -139,7 +124,7 @@ namespace MagistracyGame.FillWords
         private Tile GetTileAtPosition(Vector2 position)
         {
             foreach (var row in _rows)
-            foreach (var tile in row._tiles)
+            foreach (var tile in row.Tiles)
             {
                 var tilePosition = tile.GetPosition();
                 var size = tile.RectTransform.sizeDelta;
@@ -160,8 +145,8 @@ namespace MagistracyGame.FillWords
             var direction = currentPosition - _startTile.GetPosition();
             bool isHorizontal = Mathf.Abs(direction.x) > Mathf.Abs(direction.y);
 
-            int rowIndex = Array.FindIndex(_rows, row => Array.IndexOf(row._tiles, _startTile) != -1);
-            int columnIndex = Array.IndexOf(_rows[rowIndex]._tiles, _startTile);
+            int rowIndex = Array.FindIndex(_rows, row => Array.IndexOf(row.Tiles, _startTile) != -1);
+            int columnIndex = Array.IndexOf(_rows[rowIndex].Tiles, _startTile);
 
             if (isHorizontal)
                 SelectHorizontal(rowIndex, columnIndex, direction.x);
@@ -174,26 +159,30 @@ namespace MagistracyGame.FillWords
 
         private void SelectHorizontal(int rowIndex, int columnIndex, float x)
         {
-            float tileWidth = _rows[0]._tiles[0].RectTransform.sizeDelta.x;
+            const float HorizontalSpacing = 20f;
+
+            float tileWidth = _rows[0].Tiles[0].RectTransform.sizeDelta.x + HorizontalSpacing;
             int offset = Mathf.RoundToInt(x / tileWidth);
             int start = Mathf.Min(columnIndex, columnIndex + offset);
             int end = Mathf.Max(columnIndex, columnIndex + offset);
 
             for (int i = start; i <= end; i++)
-                if (i >= 0 && i < _rows[rowIndex]._tiles.Length)
-                    _selectedTiles.Add(_rows[rowIndex]._tiles[i]);
+                if (i >= 0 && i < _rows[rowIndex].Tiles.Length)
+                    _selectedTiles.Add(_rows[rowIndex].Tiles[i]);
         }
 
         private void SelectVertical(int rowIndex, int columnIndex, float y)
         {
-            float tileHeight = _rows[0]._tiles[0].RectTransform.sizeDelta.y;
+            const float VerticalSpacing = 20f;
+
+            float tileHeight = _rows[0].Tiles[0].RectTransform.sizeDelta.y + VerticalSpacing;
             int offset = Mathf.RoundToInt(y / tileHeight);
             int start = Mathf.Min(rowIndex, rowIndex - offset);
             int end = Mathf.Max(rowIndex, rowIndex - offset);
 
             for (int i = start; i <= end; i++)
                 if (i >= 0 && i < _rows.Length)
-                    _selectedTiles.Add(_rows[i]._tiles[columnIndex]);
+                    _selectedTiles.Add(_rows[i].Tiles[columnIndex]);
         }
 
         private void UpdateTileView()
@@ -201,7 +190,7 @@ namespace MagistracyGame.FillWords
             var currentColor = GetCurrentColor();
 
             foreach (var row in _rows)
-            foreach (var tile in row._tiles)
+            foreach (var tile in row.Tiles)
             {
                 if (_permanentSelection.Contains(tile)) continue;
 
@@ -252,6 +241,8 @@ namespace MagistracyGame.FillWords
                 }
         }
 
+        #region IGame
+
         public bool IsGameFinished { get; private set; }
 
         [field: SerializeField] public UnityEvent OnGameFinished { get; private set; }
@@ -260,8 +251,8 @@ namespace MagistracyGame.FillWords
         {
             IsGameFinished = true;
             OnGameFinished?.Invoke();
-
-            _winPanel.SetActive(true);
         }
+
+        #endregion
     }
 }
