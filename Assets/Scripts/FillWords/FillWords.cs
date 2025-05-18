@@ -89,7 +89,7 @@ namespace MagistracyGame.FillWords
 
         private void Update()
         {
-            if (IsGameFinished) return;
+            if (IsGameFinished || _startPanel.activeSelf) return;
 
             HandleInput();
         }
@@ -159,7 +159,9 @@ namespace MagistracyGame.FillWords
 
         private void SelectHorizontal(int rowIndex, int columnIndex, float x)
         {
-            float tileWidth = _rows[0].Tiles[0].RectTransform.sizeDelta.x;
+            const float HorizontalSpacing = 20f;
+
+            float tileWidth = _rows[0].Tiles[0].RectTransform.sizeDelta.x + HorizontalSpacing;
             int offset = Mathf.RoundToInt(x / tileWidth);
             int start = Mathf.Min(columnIndex, columnIndex + offset);
             int end = Mathf.Max(columnIndex, columnIndex + offset);
@@ -171,7 +173,9 @@ namespace MagistracyGame.FillWords
 
         private void SelectVertical(int rowIndex, int columnIndex, float y)
         {
-            float tileHeight = _rows[0].Tiles[0].RectTransform.sizeDelta.y;
+            const float VerticalSpacing = 20f;
+
+            float tileHeight = _rows[0].Tiles[0].RectTransform.sizeDelta.y + VerticalSpacing;
             int offset = Mathf.RoundToInt(y / tileHeight);
             int start = Mathf.Min(rowIndex, rowIndex - offset);
             int end = Mathf.Max(rowIndex, rowIndex - offset);
