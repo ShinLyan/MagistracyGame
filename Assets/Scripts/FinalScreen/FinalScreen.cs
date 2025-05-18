@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,11 +14,11 @@ namespace MagistracyGame.FinalScreen
         [SerializeField] private TMP_Text _practiceText;
         [SerializeField] private TMP_Text _magoLegoText;
         [SerializeField] private TMP_Text _dateText;
+        [SerializeField] private RectTransform _targetObject;
 
         private const string ProgramUrl = "https://www.hse.ru/ma/gamedev/";
-        [SerializeField] private RectTransform _targetObject;
         private string _screenshotPath;
-        private FileSaver fileSaver;
+        private FileSaver _fileSaver;
 
         private void Awake()
         {
@@ -33,7 +32,7 @@ namespace MagistracyGame.FinalScreen
 
         private void Start()
         {
-            fileSaver = gameObject.AddComponent<FileSaver>();
+            _fileSaver = gameObject.AddComponent<FileSaver>();
         }
 
         private void LoadPlayerData()
@@ -47,21 +46,21 @@ namespace MagistracyGame.FinalScreen
         {
             yield return new WaitForEndOfFrame();
 
-            Vector2 size = _targetObject.rect.size;
-            Vector2 pivotOffset = new Vector2(size.x * _targetObject.pivot.x, size.y * _targetObject.pivot.y);
-            
-            Vector2 worldBottomLeft = (Vector2)_targetObject.position - pivotOffset;
-            Vector2 screenBottomLeft = RectTransformUtility.WorldToScreenPoint(null, worldBottomLeft);
+            var size = _targetObject.rect.size;
+            var pivotOffset = new Vector2(size.x * _targetObject.pivot.x, size.y * _targetObject.pivot.y);
 
-            Rect readRect = new Rect(screenBottomLeft.x, screenBottomLeft.y + 1, size.x, size.y - 1);
+            var worldBottomLeft = (Vector2)_targetObject.position - pivotOffset;
+            var screenBottomLeft = RectTransformUtility.WorldToScreenPoint(null, worldBottomLeft);
 
-            Texture2D screenshot = new Texture2D((int)size.x, (int)size.y - 1, TextureFormat.RGB24, false);
+            var readRect = new Rect(screenBottomLeft.x, screenBottomLeft.y + 1, size.x, size.y - 1);
+
+            var screenshot = new Texture2D((int)size.x, (int)size.y - 1, TextureFormat.RGB24, false);
             screenshot.ReadPixels(readRect, 0, 0);
             screenshot.Apply();
 
             byte[] bytes = screenshot.EncodeToPNG();
 
-            fileSaver.SaveFile(bytes, "Diploma.png");
+            _fileSaver.SaveFile(bytes, "Diploma.png");
         }
     }
 }
