@@ -19,6 +19,7 @@ namespace MagistracyGame.StudentCard
         [SerializeField] private NicknameFilter _nicknameFilter;
         [SerializeField] private Sprite _grayInput;
         [SerializeField] private Sprite _redInput;
+        [SerializeField] private RectTransform _taskPanel;
 
         private void Awake()
         {
@@ -77,6 +78,7 @@ namespace MagistracyGame.StudentCard
                 timer += Time.deltaTime;
                 float alpha = Mathf.Lerp(0, 1, timer / StampFadeDuration);
                 _stamp.color = new Color(1, 1, 1, alpha);
+                _dateText.color = new Color(0, 0, 0, alpha);
                 yield return null;
             }
 
@@ -84,13 +86,16 @@ namespace MagistracyGame.StudentCard
 
             var startPosition = _studentCard.anchoredPosition;
             var endPosition = startPosition + new Vector2(0, Screen.height);
+            
+            var startPanelPos = _taskPanel.anchoredPosition;
+            var endPanelPosition = startPanelPos - new Vector2(0, Screen.height);
 
             timer = 0;
             while (timer < SlideOutDuration)
             {
                 timer += Time.deltaTime;
                 _studentCard.anchoredPosition = Vector2.Lerp(startPosition, endPosition, timer / SlideOutDuration);
-
+                _taskPanel.anchoredPosition = Vector2.Lerp(startPanelPos, endPanelPosition, timer / SlideOutDuration);
                 yield return null;
             }
 
