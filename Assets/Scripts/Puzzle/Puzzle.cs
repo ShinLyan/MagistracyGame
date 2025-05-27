@@ -170,7 +170,7 @@ namespace MagistracyGame.Puzzle
             Color startColor = _piecesBar.GetComponent<Image>().color;
             float startAlpha = startColor.a;
             float elapsedTime = 0f;
-            float animationDuration = 1f;
+            float animationDuration = 0.7f;
             while (elapsedTime < animationDuration * 3)
             {
                 float t = elapsedTime / (animationDuration * 3);
