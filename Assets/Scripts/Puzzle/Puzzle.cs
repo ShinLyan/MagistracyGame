@@ -116,7 +116,7 @@ namespace MagistracyGame.Puzzle
         {
             _dateText.text = DateTime.Now.ToString("dd.MM.yyyy");
             float fadeTimer = 0f;
-            _piecesBar.gameObject.SetActive(false);
+            StartCoroutine(FadeTo(0f));
             while (fadeTimer < _fadeDuration)
             {
                 fadeTimer += Time.deltaTime;
@@ -164,6 +164,23 @@ namespace MagistracyGame.Puzzle
             _isAnimating = false;
             FinishGame();
         }
+
+        private IEnumerator FadeTo(float targetAlpha)
+        {
+            Color startColor = _piecesBar.GetComponent<Image>().color;
+            float startAlpha = startColor.a;
+            float elapsedTime = 0f;
+            float animationDuration = 0.7f;
+            while (elapsedTime < animationDuration * 3)
+            {
+                float t = elapsedTime / (animationDuration * 3);
+                float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, Mathf.SmoothStep(0, 1, t));
+                _piecesBar.GetComponent<Image>().color = new Color(startColor.r, startColor.g, startColor.b, newAlpha);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
 
         #region IGame
 

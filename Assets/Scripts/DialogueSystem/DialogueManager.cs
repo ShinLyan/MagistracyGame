@@ -26,7 +26,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator WriteSentence(string sentence)
     {
-        const float TextDelay = 0.01f;
+        const float TextDelay = 0.005f;
         _dialoguePanelText.text = string.Empty;
 
         foreach (char symbol in sentence)
@@ -47,8 +47,15 @@ public class DialogueManager : MonoBehaviour
     public void OnClickDialogue()
     {
         if (_dialoguePanelText.text == _dialogue.Nodes[_phraseIndex].Text)
+
         {
-            if (_dialogue.Nodes[_phraseIndex].IsEnd) _dialogueStage.EndDialogue();
+            if (_dialogue.Nodes[_phraseIndex].IsEnd)
+            {
+                _dialogueStage.EndDialogue();
+                _phraseIndex++;
+                return;
+            }
+
             NextSentence();
         }
         else

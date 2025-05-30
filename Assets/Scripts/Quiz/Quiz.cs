@@ -19,13 +19,8 @@ namespace MagistracyGame.Quiz
             get => _questionIndex;
             set
             {
-                if (value >= _data.Questions.Length)
-                {
-                    FinishGame();
-                    return;
-                }
-
                 _questionIndex = value;
+                if (_questionIndex >= _data.Questions.Length) FinishGame();
             }
         }
 
@@ -63,8 +58,10 @@ namespace MagistracyGame.Quiz
 
         private void OnNextQuestionClicked()
         {
-            _view.HideGuidePanel();
             QuestionIndex++;
+            if (QuestionIndex == _data.Questions.Length) return;
+
+            _view.HideGuidePanel();
             ShowNextQuestion();
         }
 

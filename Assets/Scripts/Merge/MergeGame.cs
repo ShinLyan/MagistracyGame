@@ -45,6 +45,8 @@ namespace MagistracyGame.Merge
         private string _secondElement;
         private bool _hasWon;
 
+        private bool _canClick = true;
+
         private void Awake()
         {
             InitializeData();
@@ -73,6 +75,8 @@ namespace MagistracyGame.Merge
 
         private void OnElementClick(string element)
         {
+            if (!_canClick) return;
+
             if (_firstElement == null)
             {
                 _firstElement = element;
@@ -109,6 +113,7 @@ namespace MagistracyGame.Merge
 
         private IEnumerator ShowFailResult()
         {
+            _canClick = false;
             _resultSlot.sprite = _failIcon;
             yield return new WaitForSeconds(2f);
             ResetSlots();
@@ -116,6 +121,8 @@ namespace MagistracyGame.Merge
 
         private IEnumerator ShowSuccessResult(string resultElement)
         {
+            _canClick = false;
+
             _resultSlot.sprite = _elementIcons[resultElement];
             _resultText.text = resultElement;
             yield return new WaitForSeconds(2f);
@@ -138,6 +145,8 @@ namespace MagistracyGame.Merge
 
         private void ResetSlots()
         {
+            _canClick = true;
+
             _firstElement = null;
             _secondElement = null;
 
@@ -189,9 +198,9 @@ namespace MagistracyGame.Merge
             mergeGameUI.blocksRaycasts = false;
 
             _winPanel.alpha = 0f;
-            _winPanel.gameObject.SetActive(true);
             _winIconText.text = finalElement;
             _winIcon.sprite = _elementIcons[finalElement];
+            _winPanel.gameObject.SetActive(true);
 
             elapsed = 0f;
             while (elapsed < FadeDuration)
@@ -203,6 +212,7 @@ namespace MagistracyGame.Merge
             }
 
             PlayerPrefs.SetString("CompletedPractice", finalElement);
+            yield return new WaitForSeconds(1f);
             FinishGame();
         }
 
