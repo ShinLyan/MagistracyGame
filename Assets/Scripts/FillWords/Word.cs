@@ -7,6 +7,7 @@ namespace MagistracyGame.FillWords
     [RequireComponent(typeof(Image))]
     public class Word : MonoBehaviour
     {
+        [SerializeField] private Sprite _defaultSprite;
         [SerializeField] private Sprite _foundSprite;
 
         private Image _backgroundImage;
@@ -17,19 +18,19 @@ namespace MagistracyGame.FillWords
         {
             _backgroundImage = GetComponent<Image>();
             _wordText = GetComponentInChildren<TextMeshProUGUI>();
+            SetSprite(_defaultSprite);
         }
 
-        public void SetWord(string word)
-        {
-            _wordText.text = word.ToUpper();
-        }
+        private void SetSprite(Sprite sprite) => _backgroundImage.sprite = sprite;
+
+        public void SetWord(string word) => _wordText.text = word.ToUpper();
 
         public void MarkAsFound()
         {
             if (_isFound) return;
 
             _isFound = true;
-            _backgroundImage.sprite = _foundSprite;
+            SetSprite(_foundSprite);
             _wordText.color = Color.gray;
         }
     }

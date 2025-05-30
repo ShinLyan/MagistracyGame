@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u041F\u0441\u0438\u0445\u043E\u043B\u043E\u0433\u0438\u044F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 65b3b0ae6d2d0a24fb9336fe1a6ebf38, type: 2}
+  m_sharedMaterial: {fileID: -8660050522135988008, guid: 65b3b0ae6d2d0a24fb9336fe1a6ebf38, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 8
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -373,8 +373,8 @@ MonoBehaviour:
     \u043E \u043C\u044B\u0448\u043B\u0435\u043D\u0438\u0438, \u0447\u0443\u0432\u0441\u0442\u0432\u0430\u0445
     \u0438 \u043C\u043E\u0442\u0438\u0432\u0430\u0446\u0438\u0438. "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2370deefb27d9de44bc400fd4ff9811e, type: 2}
+  m_sharedMaterial: {fileID: 9165484975828915826, guid: 2370deefb27d9de44bc400fd4ff9811e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -398,8 +398,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -507,10 +507,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041A\u0442\u043E \u0447\u0438\u0442\u0430\u0435\u0442:"
+  m_text: "\u041A\u0442\u043E \u0447\u0438\u0442\u0430\u0435\u0442: \u0428\u043A\u043E\u043B\u0430
+    \u043B\u0438\u043D\u0433\u0432\u0438\u0441\u0442\u0438\u043A\u0438"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2f236baf23801584fa176a9a023d47e7, type: 2}
+  m_sharedMaterial: {fileID: -8148657404401612083, guid: 2f236baf23801584fa176a9a023d47e7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

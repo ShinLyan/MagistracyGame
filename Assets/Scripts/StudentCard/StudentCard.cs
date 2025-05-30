@@ -24,7 +24,6 @@ namespace MagistracyGame.StudentCard
         private void Awake()
         {
             _nameInputField.onValueChanged.AddListener(OnNameChanged);
-            // _continueButton.Button.onClick.AddListener(OnClickContinue);
         }
 
         private void Start()
@@ -48,12 +47,10 @@ namespace MagistracyGame.StudentCard
                 _nameInputField.GetComponent<Image>().sprite = _redInput;
                 _nameInputField.text = "";
                 _errorText.SetActive(true);
-                if (_nameInputField.placeholder is TMP_Text placeholder)
-                {
-                    placeholder.text = "Неприемлимое имя";
-                }
+                if (_nameInputField.placeholder is TMP_Text placeholder) placeholder.text = "РќРµРїСЂРёРµРјР»РµРјРѕРµ РёРјСЏ";
                 return;
             }
+
             _nameInputField.GetComponent<Image>().sprite = _grayInput;
             _errorText.SetActive(false);
             _continueButton.SetInteractable(false);
@@ -68,7 +65,7 @@ namespace MagistracyGame.StudentCard
         private IEnumerator StampAnimationCoroutine()
         {
             const float StampFadeDuration = 1f;
-            const float PauseDuration = 2f;
+            const float PauseDuration = 1f;
             const float SlideOutDuration = 0.5f;
 
             float timer = 0;
@@ -86,7 +83,7 @@ namespace MagistracyGame.StudentCard
 
             var startPosition = _studentCard.anchoredPosition;
             var endPosition = startPosition + new Vector2(0, Screen.height);
-            
+
             var startPanelPos = _taskPanel.anchoredPosition;
             var endPanelPosition = startPanelPos - new Vector2(0, Screen.height);
 

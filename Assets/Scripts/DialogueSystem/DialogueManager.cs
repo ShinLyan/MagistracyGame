@@ -26,7 +26,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator WriteSentence(string sentence)
     {
-        const float TextDelay = 0.03f;
+        const float TextDelay = 0.005f;
         _dialoguePanelText.text = string.Empty;
 
         foreach (char symbol in sentence)
@@ -55,8 +55,8 @@ public class DialogueManager : MonoBehaviour
                 _phraseIndex++;
                 return;
             }
+
             NextSentence();
-         
         }
         else
         {

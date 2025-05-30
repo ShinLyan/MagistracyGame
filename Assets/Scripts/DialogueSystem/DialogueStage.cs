@@ -25,14 +25,11 @@ public class DialogueStage : MonoBehaviour
     [SerializeField] private RectTransform _dialogueText;
     [SerializeField] private GameObject[] _stages;
 
-    [SerializeField] private float animationDuration = 1f;
-    [SerializeField] private Vector2 characterStartPos = new Vector2(570, 0);
-    [SerializeField] private Vector2 textStartPos = new Vector2(-1350, 50);
-    [SerializeField] private Vector2 characterEndPos = new Vector2(-80, 0);
-    [SerializeField] private Vector2 textEndPos = new Vector2(80, 50);
-    
-
-    private bool isAnimating = false;
+    private const float AnimationDuration = 0.3f;
+    [SerializeField] private Vector2 characterStartPos = new(570, 0);
+    [SerializeField] private Vector2 textStartPos = new(-1350, 50);
+    [SerializeField] private Vector2 characterEndPos = new(-80, 0);
+    [SerializeField] private Vector2 textEndPos = new(80, 50);
 
     private void Start() => InitializeDialogStage();
 
@@ -69,18 +66,14 @@ public class DialogueStage : MonoBehaviour
             _puzzle,
             _diplomStage
         };
-        
-        
 
         StopAllCoroutines();
-        _dialogueWindow.GetComponent<Button>().enabled = false;     
+        _dialogueWindow.GetComponent<Button>().enabled = false;
         StartCoroutine(AnimateIn(screens[levelIndex], () =>
         {
             _dialogueManager.ContinueDialogue();
             _dialogueWindow.GetComponent<Button>().enabled = true;
         }));
-
-       
     }
 
     public void EndDialogue()
@@ -94,13 +87,16 @@ public class DialogueStage : MonoBehaviour
             _mergeGame,
             _secondQuiz,
             _puzzle,
-            _diplomStage
+            _diplomStage,
+            _mainMenu
         };
         _dialogueWindow.GetComponent<Button>().enabled = false;
         StartCoroutine(AnimateOut(() =>
         {
             StartCoroutine(FadeTo(0f));
             _dialogueWindow.SetActive(false);
+
+            foreach (var screen in screens) screen.SetActive(false);
             screens[levelIndex].SetActive(true);
 
             levelIndex++;
@@ -108,28 +104,28 @@ public class DialogueStage : MonoBehaviour
     }
 
     private IEnumerator AnimateIn(GameObject screen, Action onComplete)
-    {                
+    {
         _dialogueText.GetChild(0).GetChild(1).GetComponent<TMP_Text>().text = "";
         float elapsedTime = 0f;
 
-        Vector2 characterStart = characterStartPos;
-        Vector2 textStart = textStartPos;
+        var characterStart = characterStartPos;
+        var textStart = textStartPos;
         _characterImage.anchoredPosition = characterStart;
         _dialogueText.anchoredPosition = textStart;
 
         StartCoroutine(FadeTo(1f));
-        yield return new WaitForSeconds(1.51f);
+        yield return new WaitForSeconds(1f);
 
         screen.SetActive(false);
         _dialogueWindow.SetActive(true);
 
 
         StartCoroutine(FadeTo(0f));
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1f);
 
-        while (elapsedTime < animationDuration)
+        while (elapsedTime < AnimationDuration)
         {
-            float t = elapsedTime / animationDuration;
+            float t = elapsedTime / AnimationDuration;
             _characterImage.anchoredPosition = Vector2.Lerp(characterStart, characterEndPos, Mathf.SmoothStep(0, 1, t));
             _dialogueText.anchoredPosition = Vector2.Lerp(textStart, textEndPos, Mathf.SmoothStep(0, 1, t));
 
@@ -147,13 +143,14 @@ public class DialogueStage : MonoBehaviour
     {
         float elapsedTime = 0f;
 
-        Vector2 characterStart = _characterImage.anchoredPosition;
-        Vector2 textStart = _dialogueText.anchoredPosition;
+        var characterStart = _characterImage.anchoredPosition;
+        var textStart = _dialogueText.anchoredPosition;
 
-        while (elapsedTime < animationDuration)
+        while (elapsedTime < AnimationDuration)
         {
-            float t = elapsedTime / animationDuration;
-            _characterImage.anchoredPosition = Vector2.Lerp(characterStart, characterStartPos, Mathf.SmoothStep(0, 1, t));
+            float t = elapsedTime / AnimationDuration;
+            _characterImage.anchoredPosition =
+                Vector2.Lerp(characterStart, characterStartPos, Mathf.SmoothStep(0, 1, t));
             _dialogueText.anchoredPosition = Vector2.Lerp(textStart, textStartPos, Mathf.SmoothStep(0, 1, t));
 
             elapsedTime += Time.deltaTime;
@@ -164,7 +161,7 @@ public class DialogueStage : MonoBehaviour
         _dialogueText.anchoredPosition = textStartPos;
         _dialogueText.GetChild(0).GetChild(1).GetComponent<TMP_Text>().text = "";
 
-        
+
         StartCoroutine(FadeTo(1f));
         yield return new WaitForSeconds(1.51f);
 
@@ -173,17 +170,18 @@ public class DialogueStage : MonoBehaviour
 
     private IEnumerator FadeTo(float targetAlpha)
     {
-        Color startColor = _blackBackground.color;
+        var startColor = _blackBackground.color;
         float startAlpha = startColor.a;
         float elapsedTime = 0f;
-        while (elapsedTime < animationDuration * 3)
-        {         
-            float t = elapsedTime / (animationDuration * 3);
+        while (elapsedTime < AnimationDuration * 3)
+        {
+            float t = elapsedTime / (AnimationDuration * 3);
             float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, Mathf.SmoothStep(0, 1, t));
             _blackBackground.color = new Color(startColor.r, startColor.g, startColor.b, newAlpha);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        _blackBackground.color = new Color(startColor.r, startColor.g, startColor.b, targetAlpha);        
+
+        _blackBackground.color = new Color(startColor.r, startColor.g, startColor.b, targetAlpha);
     }
 }
