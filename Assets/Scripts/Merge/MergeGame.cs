@@ -31,16 +31,17 @@ namespace MagistracyGame.Merge
 
         [SerializeField] private Image _winIcon;
         [SerializeField] private TextMeshProUGUI _winIconText;
+        [SerializeField] private TextMeshProUGUI _winDescription;
 
         [Header("Icons")]
         [SerializeField] private Sprite _failIcon;
 
         [SerializeField] private Sprite _defaultIcon;
 
-        private HashSet<string> _allFinalElements = new() { "Модуль физики", "Нейронный модуль" };
-        private List<string> _availableElements = new() { "Математика", "Физика", "Программирование" };
-        private readonly Dictionary<(string, string), string> _mergeRules = new();
-        private readonly Dictionary<string, Sprite> _elementIcons = new();
+        private HashSet<string> _allFinalElements;
+        private List<string> _availableElements;
+        private Dictionary<(string, string), string> _mergeRules;
+        private Dictionary<string, Sprite> _elementIcons;
         private string _firstElement;
         private string _secondElement;
         private bool _hasWon;
@@ -61,16 +62,18 @@ namespace MagistracyGame.Merge
 
         private void InitializeData()
         {
-            _mergeRules.Clear();
+            _mergeRules = new Dictionary<(string, string), string>();
             foreach (var rule in _gameData.MergeRules)
                 _mergeRules.Add((rule.Element1, rule.Element2), rule.Result);
 
-            _elementIcons.Clear();
+            _elementIcons = new Dictionary<string, Sprite>();
             foreach (var elementIcon in _gameData.ElementIcons)
                 _elementIcons[elementIcon.ElementName] = elementIcon.Icon;
 
             _availableElements = new List<string>(_gameData.AvailableElements);
-            _allFinalElements = new HashSet<string>(_gameData.FinalElements);
+
+            _allFinalElements = new HashSet<string>();
+            foreach (var element in _gameData.FinalElements) _allFinalElements.Add(element.ElementName);
         }
 
         private void OnElementClick(string element)
@@ -200,6 +203,7 @@ namespace MagistracyGame.Merge
             _winPanel.alpha = 0f;
             _winIconText.text = finalElement;
             _winIcon.sprite = _elementIcons[finalElement];
+            _winDescription.text = _gameData.FinalElements.Find(element => element.ElementName == finalElement).Text;
             _winPanel.gameObject.SetActive(true);
 
             elapsed = 0f;
